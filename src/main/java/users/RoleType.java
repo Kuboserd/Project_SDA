@@ -1,7 +1,7 @@
 package users;
 
 public enum RoleType {
-    CUSTOMER,
-    SUPPORT_AGENT,
-    ADMINISTRATOR
+    USER,
+    ADMIN,
+    SERVICE_ASSISTANT
 }

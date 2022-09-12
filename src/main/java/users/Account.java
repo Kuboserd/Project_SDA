@@ -1,17 +1,20 @@
 package users;
 
+import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.management.relation.Role;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
 @Table(name = "users")
-public class User {
+public class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -30,7 +33,7 @@ public class User {
     private String password;
 
     @Column(name = "user_mobile")
-    private BigDecimal phone;
+    private String phone;
 
     @Column
     private boolean wallet;
@@ -42,4 +45,13 @@ public class User {
     @Column(name = "role")
     private RoleType role;
 
+    public Account(String name, String surname, String email, String password, String phone, RoleType role) {
+        this.name = name;
+        this.surname = surname;
+        this.email = email;
+        this.password = password;
+        this.phone = phone;
+        this.role = role;
+        this.wallet = role == RoleType.USER;
+    }
 }

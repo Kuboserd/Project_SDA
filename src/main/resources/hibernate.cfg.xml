@@ -20,7 +20,7 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!--    Mappings-->
-        <mapping class="users.User"/>
+        <mapping class="users.Account"/>
 
     </session-factory>
 
