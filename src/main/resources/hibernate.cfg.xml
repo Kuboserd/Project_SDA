@@ -4,9 +4,10 @@
         "http://www.hibernate.org/dtd/hibernate-configuration-3.0.dtd">
 
 <hibernate-configuration>
+
     <session-factory>
         <property name="connection.driver_class">com.mysql.jdbc.Driver</property>
-        <property name="connection.url">jdbc:mysql://localhost:3306/hibernate?useSSL=false&amp;serverTimezone=CET</property>
+        <property name="connection.url">jdbc:mysql:https://flybook.dozp.pl</property>
         <property name="connection.username">flight_db</property>
         <property name="connection.password">Nrzsnrndpm_+)</property>
         <property name="connection.pool_size">1</property>
