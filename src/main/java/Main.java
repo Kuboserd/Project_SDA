@@ -1,6 +1,3 @@
-import users.Account;
-import users.RoleType;
-import users.User;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
