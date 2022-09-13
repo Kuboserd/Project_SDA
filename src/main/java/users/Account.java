@@ -1,18 +1,16 @@
 package users;
 
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.math.BigDecimal;
 
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
+@ToString
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
+@DiscriminatorColumn(name="role")
 @Table(name = "users")
 public class Account {
 
@@ -35,23 +33,14 @@ public class Account {
     @Column(name = "user_mobile")
     private String phone;
 
-    @Column
-    private boolean wallet;
-
-    @Column
-    private double balance;
-
-    @Enumerated(EnumType.STRING)
-    @Column(name = "role")
-    private RoleType role;
-
-    public Account(String name, String surname, String email, String password, String phone, RoleType role) {
+    public Account(String name, String surname, String email, String password, String phone) {
         this.name = name;
         this.surname = surname;
         this.email = email;
         this.password = password;
         this.phone = phone;
-        this.role = role;
-        this.wallet = role == RoleType.USER;
+    }
+
+    public Account() {
     }
 }
