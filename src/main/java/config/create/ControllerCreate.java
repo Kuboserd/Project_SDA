@@ -18,36 +18,16 @@ public class ControllerCreate {
     }
 
     private void getMenu(){
-        askEmail();
-        email = print();
-        askPassword();
-        password = print();
-        askName();
-        name = print();
-        askSurname();
-        surname = print();
-        askPhone();
-        phone = print();
-    }
-
-    private void askEmail(){
         System.out.println("What's your e-mail address?");
-    }
-
-    private void askPassword(){
+        email = print();
         System.out.println("What password do you want?");
-    }
-
-    private void askName(){
-        System.out.println("What's your name?");
-    }
-
-    private void askSurname(){
+        password = print();
+        System.out.println("What password do you want?");
+        name = print();
         System.out.println("What's your surname?");
-    }
-
-    private void askPhone(){
+        surname = print();
         System.out.println("What's your phone number?");
+        phone = print();
     }
 
     private String print(){
