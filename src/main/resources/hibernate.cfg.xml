@@ -24,7 +24,6 @@
         <mapping class="users.User"/>
         <mapping class="users.Admin"/>
         <mapping class="users.ServiceAssistant"/>
-        <mapping class="tickets.Ticket"/>
 
     </session-factory>
 
