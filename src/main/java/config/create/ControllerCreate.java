@@ -2,10 +2,9 @@ package config.create;
 
 import java.util.Scanner;
 
-public class Controller {
+public class ControllerCreate {
     private static Scanner scanner = new Scanner(System.in);
     private CreateAccount createAccount = new CreateAccount();
-
     private String email;
     private String password;
     private String name;

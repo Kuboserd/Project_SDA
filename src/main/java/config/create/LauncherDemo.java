@@ -2,9 +2,8 @@ package config.create;
 
 public class LauncherDemo {
     public static void main(String[] args) {
-        Controller controller = new Controller();
+        ControllerCreate controller = new ControllerCreate();
 
         controller.startCreateAccount();
-
     }
 }
