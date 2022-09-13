@@ -8,6 +8,7 @@ import java.math.BigDecimal;
 @Getter
 @Setter
 @ToString
+
 @Inheritance(strategy = InheritanceType.SINGLE_TABLE)
 @Entity
 @DiscriminatorColumn(name="role")
