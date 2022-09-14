@@ -1,4 +1,6 @@
 
+import repository.Repository;
+import users.Account;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
