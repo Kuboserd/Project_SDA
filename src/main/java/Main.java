@@ -14,7 +14,6 @@ public class Main {
 
         entityManager.persist(new User("Marek","Karol","mkarol@gmail.com","1234","666231634", 200));
         entityManager.getTransaction().commit(); */
-        System.out.println(Arrays.toString(Repository.getTable(Account.class).toArray()));
 
         entityManager.close();
     }

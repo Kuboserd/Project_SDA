@@ -1,20 +1,17 @@
 package config.loginsystem;
 
-import util.ConnectionManager;
 import config.MenuException;
+import repository.Repository;
 import users.Account;
 
 import javax.persistence.EntityManager;
 import java.util.List;
 
 public class Login {
-    private static EntityManager em = ConnectionManager.getEntityManager();
     private boolean active = false;
     private Account account;
     public boolean filterEmailByAccount(String email) throws MenuException {
-        List<Account> accounts = em.createQuery("from Account a where a.email =: email", Account.class)
-                .setParameter("email", email)
-                .getResultList();
+        List<Account> accounts = Repository.getByMail(email);
         if (accounts.size() == 1) {
             account = accounts.get(0);
             return true;
@@ -31,11 +28,9 @@ public class Login {
         }
     }
 
-    public void setAccount(String email){
+    public void setAccount(String email) {
         active = true;
-        account = em.createQuery("from Account a where a.email =: email", Account.class)
-                .setParameter("email", email)
-                .getSingleResult();
+        account = Repository.getByMail(email).get(0);
     }
 
     public Account getAccount(){
