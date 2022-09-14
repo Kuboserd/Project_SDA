@@ -26,6 +26,10 @@ public class User extends Account {
         this.balance = balance;
     }
 
+    public User(String name, String surname, String email, String password, String phone) {
+        super(name, surname, email, password, phone);
+    }
+
     public User() {
     }
     /*Metody*/
