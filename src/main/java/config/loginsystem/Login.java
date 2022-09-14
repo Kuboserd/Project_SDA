@@ -1,6 +1,6 @@
 package config.loginsystem;
 
-import config.ConnectionManager;
+import util.ConnectionManager;
 import config.MenuException;
 import users.Account;
 
