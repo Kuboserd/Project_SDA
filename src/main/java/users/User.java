@@ -18,8 +18,8 @@ public class User extends Account {
 
     private double balance;
 
-    //@OneToMany(fetch = FetchType.LAZY,mappedBy = "ticket.id")
-    //private List<Ticket> ticketList;
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    private List<Ticket> ticketList;
 
     public User(String name, String surname, String email, String password, String phone, double balance) {
         super(name, surname, email, password, phone);
