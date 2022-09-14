@@ -8,15 +8,15 @@ import java.util.List;
 
 public class Repository {
 
-    static EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
+    private static final EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
 
-    public void add(Account object) {
+    public static void add(Account object) {
         entityManager.getTransaction().begin();
         entityManager.persist(object);
         entityManager.getTransaction().commit();
     }
 
-    public void update(Account object) {
+    public static void update(Account object) {
         entityManager.getTransaction().begin();
         entityManager.merge(object);
         entityManager.getTransaction().commit();
@@ -29,7 +29,7 @@ public class Repository {
         return tempList;
     }
 
-    public List<Account> getByMail(String email) {
+    public static List<Account> getByMail(String email) {
         List<Account> tempList;
         tempList = entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
                 .setParameter("email", email)
@@ -37,7 +37,7 @@ public class Repository {
         return tempList;
     }
 
-    public void close() {
+    public static void close() {
         entityManager.close();
     }
 
