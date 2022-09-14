@@ -16,6 +16,12 @@ public class Repository {
         entityManager.getTransaction().commit();
     }
 
+    public void update(Account object){
+        entityManager.getTransaction().begin();
+        entityManager.merge(object);
+        entityManager.getTransaction().commit();
+    }
+
     public static  <T> List<T> get(Class entity) {
         List<T> tempList;
         tempList = entityManager.createQuery("from " + entity.getSimpleName()).getResultList();
