@@ -1,5 +1,6 @@
 package config.loginsystem;
 
+import config.MenuException;
 import users.Account;
 
 import java.util.Scanner;
@@ -12,19 +13,35 @@ public class ControllerLogin {
     private String password;
 
     public void checkLogin(){
+        printEmail();
+        account = checkEmailByAccount();
+        checkPassword();
+    }
+
+    private void printEmail(){
         System.out.println("What's your e-mail address?");
-        email = print();
-        account = filterEmailByAccount();
-        System.out.println("What's your password?");
-        password = print();
-        System.out.println(login.isValidPassword(password, account));
+        email = scanner.nextLine();
     }
 
-    private String print(){
-        return scanner.nextLine();
+    private Account checkEmailByAccount(){
+        try {
+            return login.filterEmailByAccount(email);
+        } catch (MenuException e) {
+            System.out.println(e.getMessage());
+            printEmail();
+            checkEmailByAccount();
+        }
+        return null;
     }
 
-    private Account filterEmailByAccount(){
-        return login.filterEmailByAccount(email);
+    private void checkPassword(){
+        try {
+            System.out.println("What's your password?");
+            password = scanner.nextLine();
+            login.isValidPassword(password, account);
+        } catch (MenuException e) {
+            System.out.println(e.getMessage());
+            checkPassword();
+        }
     }
 }
