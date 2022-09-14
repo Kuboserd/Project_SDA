@@ -13,7 +13,7 @@ import java.math.BigDecimal;
 @Entity
 @DiscriminatorColumn(name="role")
 @Table(name = "users")
-public class Account {
+public abstract class Account {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

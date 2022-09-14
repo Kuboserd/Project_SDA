@@ -24,6 +24,10 @@
         <mapping class="users.User"/>
         <mapping class="users.Admin"/>
         <mapping class="users.ServiceAssistant"/>
+        <mapping class="tickets.Ticket"/>
+        <mapping class="flight.Plane"/>
+        <mapping class="flight.Airport"/>
+        <mapping class="flight.Flight"/>
 
     </session-factory>
 
