@@ -9,18 +9,21 @@ import java.util.List;
 
 public class Login {
     private static EntityManager em = ConnectionManager.getEntityManager();
-    public Account filterEmailByAccount(String email) throws MenuException {
+    private boolean active = false;
+    private Account account;
+    public boolean filterEmailByAccount(String email) throws MenuException {
         List<Account> accounts = em.createQuery("from Account a where a.email =: email", Account.class)
                 .setParameter("email", email)
                 .getResultList();
         if (accounts.size() == 1) {
-            return accounts.get(0);
+            account = accounts.get(0);
+            return true;
         } else {
             throw new MenuException("Error, did not find the e-mail");
         }
     }
 
-    public boolean isValidPassword(String password, Account account) throws MenuException {
+    public boolean isValidPassword(String password) throws MenuException {
         if(account.getPassword().equals(password)){
             return true;
         } else {
@@ -28,5 +31,14 @@ public class Login {
         }
     }
 
+    public void setAccount(String email){
+        active = true;
+        account = em.createQuery("from Account a where a.email =: email", Account.class)
+                .setParameter("email", email)
+                .getSingleResult();
+    }
 
+    public Account getAccount(){
+        return account;
+    }
 }

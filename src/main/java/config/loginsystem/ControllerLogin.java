@@ -8,14 +8,15 @@ import java.util.Scanner;
 public class ControllerLogin {
     private static Scanner scanner = new Scanner(System.in);
     private static Login login = new Login();
-    private Account account;
     private String email;
     private String password;
 
+
     public void checkLogin(){
-        printEmail();
-        account = checkEmailByAccount();
+        checkEmailByAccount();
         checkPassword();
+        System.out.println("Login successful");
+        login.setAccount(email);
     }
 
     private void printEmail(){
@@ -23,25 +24,26 @@ public class ControllerLogin {
         email = scanner.nextLine();
     }
 
-    private Account checkEmailByAccount(){
+    private void checkEmailByAccount(){
         try {
-            return login.filterEmailByAccount(email);
+            printEmail();
+            login.filterEmailByAccount(email);
         } catch (MenuException e) {
             System.out.println(e.getMessage());
-            printEmail();
             checkEmailByAccount();
         }
-        return null;
     }
 
     private void checkPassword(){
         try {
             System.out.println("What's your password?");
             password = scanner.nextLine();
-            login.isValidPassword(password, account);
+            login.isValidPassword(password);
         } catch (MenuException e) {
             System.out.println(e.getMessage());
             checkPassword();
         }
     }
+
+
 }
