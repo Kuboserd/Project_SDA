@@ -1,7 +1,10 @@
 package gui;
 
-import javax.swing.*;
+import repository.Repository;
+import users.Account;
 
+import javax.swing.*;
+import java.util.List;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -51,21 +54,31 @@ public class GUI {
 
 
                 //TODO: Confirm if logged in
-                if(true) {
-                    String mail = email.getText();
-                    String password = String.valueOf(pswdField.getPassword());
-                    System.out.println(mail);
-                    System.out.println(password);
-                    JOptionPane.showMessageDialog(null, "Login Successful");
 
 
-                    //TODO: Pass <User> to FrontPage to query records
-                    FrontPage page = new FrontPage(mail);
-                    page.setLocationRelativeTo(frame);
-                    frame.setVisible(false);
+
+                String mail = email.getText();
+                List<Account> accountsQueried = Repository.getByMail(mail);
+                if(accountsQueried.size() <= 0) {
+                    JOptionPane.showMessageDialog(null, "Invalid email!");
                 } else {
+                    String password = String.valueOf(pswdField.getPassword());
+                    System.out.println(accountsQueried.get(0).getPassword());
+                    System.out.println(password);
+                    if(!accountsQueried.get(0).getPassword().equals(password)) {
+                        JOptionPane.showMessageDialog(null, "Invalid password!");
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Login Successful");
+                        //TODO: Pass <User> to FrontPage to query records
+                        FrontPage page = new FrontPage(mail);
+                        page.setLocationRelativeTo(frame);
+                        frame.setVisible(false);
+                    }
 
                 }
+
+
+
             }
         });
         panel.add(but);
