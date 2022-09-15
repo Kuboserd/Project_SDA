@@ -4,15 +4,19 @@ package flight;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "airports")
+@Entity
+@Table(name = "airports")
 public class Airport {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "airport")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startAirport")
     private List<Flight> flightList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "endAirport")
+    private List<Flight> flightList2;
 
     @Column
     private String code;

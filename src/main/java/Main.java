@@ -1,9 +1,11 @@
 
+import flight.Airport;
 import repository.Repository;
 import users.Account;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
+import javax.print.DocFlavor;
 import java.util.Arrays;
 
 public class Main {
@@ -16,6 +18,8 @@ public class Main {
 
         entityManager.persist(new User("Marek","Karol","mkarol@gmail.com","1234","666231634", 200));
         entityManager.getTransaction().commit(); */
+
+     System.out.println(Arrays.toString(Repository.getTable(Airport.class).toArray()));
 
         entityManager.close();
     }

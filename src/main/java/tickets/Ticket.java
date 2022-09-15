@@ -5,7 +5,8 @@ import users.User;
 
 import javax.persistence.*;
 
-@Entity(name = "ticket")
+@Entity
+@Table(name = "tickets")
 public class Ticket {
 
     @Id
