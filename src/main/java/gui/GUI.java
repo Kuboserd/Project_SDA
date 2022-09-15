@@ -1,5 +1,7 @@
 package gui;
 
+import config.MenuException;
+import config.loginsystem.Login;
 import repository.Repository;
 import users.Account;
 
@@ -14,7 +16,6 @@ public class GUI {
 
     public static void main(String[] args) {
 
-
         JFrame frame = new JFrame();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setTitle("FlightBooker - Login Page");
@@ -23,7 +24,6 @@ public class GUI {
 
         JPanel panel = new JPanel(new BorderLayout());
         panel.setLayout(null);
-
 
 
         JLabel label = new JLabel("Username");
@@ -55,17 +55,13 @@ public class GUI {
 
                 //TODO: Confirm if logged in
 
-
-
                 String mail = email.getText();
                 List<Account> accountsQueried = Repository.getByMail(mail);
-                if(accountsQueried.size() <= 0) {
+                if (accountsQueried.size() <= 0) {
                     JOptionPane.showMessageDialog(null, "Invalid email!");
                 } else {
                     String password = String.valueOf(pswdField.getPassword());
-                    System.out.println(accountsQueried.get(0).getPassword());
-                    System.out.println(password);
-                    if(!accountsQueried.get(0).getPassword().equals(password)) {
+                    if (!accountsQueried.get(0).getPassword().equals(password)) {
                         JOptionPane.showMessageDialog(null, "Invalid password!");
                     } else {
                         JOptionPane.showMessageDialog(null, "Login Successful");
@@ -74,15 +70,10 @@ public class GUI {
                         page.setLocationRelativeTo(frame);
                         frame.setVisible(false);
                     }
-
                 }
-
-
-
             }
         });
         panel.add(but);
-
 
 
 //        JTextPane f = new JTextPane();
@@ -99,14 +90,6 @@ public class GUI {
 //        field.setBackground(new Color(255, 255, 0));
 //        field.setSize(new Dimension(400, 300));
 //        frame.add(field);
-
-
-
-
-
-
-
-
 
 
         frame.pack();

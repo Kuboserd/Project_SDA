@@ -2,10 +2,7 @@ package config.create;
 
 import config.MenuException;
 import repository.Repository;
-import users.Account;
 import users.User;
-
-import javax.persistence.EntityManager;
 
 public class CreateAccount {
     private User user;
@@ -22,6 +19,6 @@ public class CreateAccount {
     }
 
     public void addUserToDB() {
-        Repository.add(user);
+        Repository.addAccount(user);
     }
 }

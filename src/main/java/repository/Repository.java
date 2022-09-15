@@ -1,5 +1,8 @@
 package repository;
 
+import flight.Airport;
+import flight.Flight;
+import tickets.Ticket;
 import users.Account;
 import util.HibernateUtil;
 
@@ -10,31 +13,39 @@ public class Repository {
 
     private static final EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
 
-    public static void add(Account object) {
+    public static void addAccount(Account object) {
         entityManager.getTransaction().begin();
         entityManager.persist(object);
         entityManager.getTransaction().commit();
     }
 
-    public static void update(Account object) {
+    public static void updateAccount(Account object) {
         entityManager.getTransaction().begin();
         entityManager.merge(object);
         entityManager.getTransaction().commit();
     }
 
+    public static void addTicket(Ticket object) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(object);
+        entityManager.getTransaction().commit();
+    }
+
     public static <T> List<T> getTable(Class<T> entity) {
-        List<T> tempList;
-        tempList = entityManager.createQuery("FROM " + entity.getSimpleName(), entity)
+        return entityManager.createQuery("FROM " + entity.getSimpleName(), entity)
                 .getResultList();
-        return tempList;
     }
 
     public static List<Account> getByMail(String email) {
-        List<Account> tempList;
-        tempList = entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
+        return entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
                 .setParameter("email", email)
                 .getResultList();
-        return tempList;
+    }
+
+    public static List<Airport> getByCityName(String cityName){
+        return entityManager.createQuery("FROM Airport a WHERE a.cityName =: cityName", Airport.class)
+                .setParameter("cityName", cityName)
+                .getResultList();
     }
 
     public static void close() {

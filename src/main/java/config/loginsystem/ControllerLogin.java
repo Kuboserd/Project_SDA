@@ -1,7 +1,6 @@
 package config.loginsystem;
 
 import config.MenuException;
-import users.Account;
 
 import java.util.Scanner;
 
@@ -11,22 +10,21 @@ public class ControllerLogin {
     private String email;
     private String password;
 
-
     public void checkLogin(){
         checkEmailByAccount();
         checkPassword();
         System.out.println("Login successful");
-        login.setAccount(email);
+        login.setActive(email);
     }
 
-    private void printEmail(){
+    private void inputEmail(){
         System.out.println("What's your e-mail address?");
         email = scanner.nextLine();
     }
 
     private void checkEmailByAccount(){
         try {
-            printEmail();
+            inputEmail();
             login.filterEmailByAccount(email);
         } catch (MenuException e) {
             System.out.println(e.getMessage());

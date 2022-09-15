@@ -7,7 +7,6 @@ import javax.persistence.*;
 
 @Entity(name = "ticket")
 public class Ticket {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -30,6 +29,31 @@ public class Ticket {
     @Column(name = "clearance_priority")
     private boolean clearancePriority;
 
+    public Ticket() {
+    }
 
+    public Ticket(User user, float price) {
+        this.user = user;
+        this.price = price;
+    }
 
+    public User getUser() {
+        return user;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public LuggageType getLuggageType() {
+        return luggageType;
+    }
+
+    public boolean isClearancePriority() {
+        return clearancePriority;
+    }
 }

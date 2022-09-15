@@ -2,7 +2,6 @@ package config.create;
 
 import config.MenuException;
 
-import java.awt.*;
 import java.util.Scanner;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -23,30 +22,30 @@ public class ControllerCreate {
     }
 
     private void getMenu() {
-        printEmail();
+        inputEmail();
         System.out.println("What password do you want?");
-        password = print();
+        password = input();
         System.out.println("What's your name?");
-        name = print();
+        name = input();
         System.out.println("What's your surname?");
-        surname = print();
-        printPhoneNumber();
+        surname = input();
+        inputPhoneNumber();
     }
 
-    private void printEmail() {
+    private void inputEmail() {
         try {
             System.out.println("What's your e-mail address?");
-            email = print();
+            email = input();
             createAccount.checkEmail(email);
         } catch (MenuException e) {
             System.out.println(e.getMessage());
-            printEmail();
+            inputEmail();
         }
     }
 
-    private void printPhoneNumber() {
+    private void inputPhoneNumber() {
         System.out.println("What's your phone number?");
-        phone = print();
+        phone = input();
         checkPhoneNumber();
     }
 
@@ -59,11 +58,11 @@ public class ControllerCreate {
             }
         } catch (MenuException e) {
             System.out.println(e.getMessage());
-            printPhoneNumber();
+            inputPhoneNumber();
         }
     }
 
-    private String print() {
+    private String input() {
         return scanner.nextLine();
     }
 

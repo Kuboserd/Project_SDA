@@ -24,10 +24,10 @@ public class Airport {
     private String cityCode;
 
     @Column
-    private String cityName;
+    private String cityName;//
 
     @Column
-    private String countryName;
+    private String countryName;//
 
     @Column
     private String countryCode;

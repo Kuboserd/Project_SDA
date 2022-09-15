@@ -22,5 +22,4 @@ public class Plane {
 
     @Column(name = "year_of_production")
     private LocalDate yearOfProduction;
-
 }
