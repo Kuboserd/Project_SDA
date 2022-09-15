@@ -4,7 +4,8 @@ import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.List;
 
-@Entity(name = "planes")
+@Entity
+@Table(name = "planes")
 public class Plane {
 
     @Id

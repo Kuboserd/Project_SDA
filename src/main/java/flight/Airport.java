@@ -12,8 +12,11 @@ public class Airport {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "airport")
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "startAirport")
     private List<Flight> flightList;
+
+    @OneToMany(fetch = FetchType.LAZY, mappedBy = "endAirport")
+    private List<Flight> flightList2;
 
     @Column
     private String code;

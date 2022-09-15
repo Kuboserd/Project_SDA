@@ -6,7 +6,8 @@ import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-@Entity(name = "flights")
+@Entity
+@Table(name = "flights")
 public class Flight {
 
     @Id
@@ -17,18 +18,16 @@ public class Flight {
     private List<Ticket> ticketList;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "airport_id")
-    private Airport airport;
+    @JoinColumn(name = "start_airport_id")
+    private Airport startAirport;
+
+    @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "end_airport_id")
+    private Airport endAirport;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "plane_id")
     private Plane plane;
-
-    @Column
-    private String destination;
-
-    @Column
-    private String origin;
 
     @Column(name = "departure_time")
     private LocalDateTime departureTime;
