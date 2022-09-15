@@ -43,10 +43,17 @@ public class Repository {
     }
 
     public static List<Airport> getByCityName(String cityName){
-        return entityManager.createQuery("FROM Airport a WHERE a.cityName =: cityName", Airport.class)
+        return entityManager.createQuery("FROM airports a WHERE a.cityName =: cityName", Airport.class)
                 .setParameter("cityName", cityName)
                 .getResultList();
     }
+
+    public static List<Airport> getByCountryName(String countryName){
+        return entityManager.createQuery("FROM Airport a WHERE a.countryName =: countryName", Airport.class)
+                .setParameter("name", countryName)
+                .getResultList();
+    }
+
 
     public static void close() {
         entityManager.close();

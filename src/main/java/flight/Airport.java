@@ -4,7 +4,8 @@ package flight;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "airports")
+@Entity
+@Table(name = "airports")
 public class Airport {
 
     @Id
