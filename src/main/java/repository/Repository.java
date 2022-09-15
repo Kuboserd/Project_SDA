@@ -1,6 +1,7 @@
 package repository;
 
 import users.Account;
+import users.User;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;
@@ -11,6 +12,13 @@ public class Repository {
     private static final EntityManager entityManager = HibernateUtil.getSessionFactory().createEntityManager();
 
     public static void add(Account object) {
+        entityManager.getTransaction().begin();
+        entityManager.persist(object);
+        entityManager.getTransaction().commit();
+    }
+
+
+    public static void create(User object) {
         entityManager.getTransaction().begin();
         entityManager.persist(object);
         entityManager.getTransaction().commit();

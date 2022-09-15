@@ -1,12 +1,14 @@
 package gui;
 
+import users.Account;
+
 import javax.swing.*;
 import java.awt.*;
 
 public class FrontPage extends JFrame {
-    private String user;         /*TODO: Convert into <User> object */
+    private Account user;
 
-    public FrontPage(String user) {
+    public FrontPage(Account user) {
         this.user = user;
         this.main();
     }
@@ -23,14 +25,17 @@ public class FrontPage extends JFrame {
         welcome.setBounds(120, 10, 400, 20);
         panel.add(welcome, BorderLayout.CENTER);
 
-        JLabel loggedInAs = new JLabel("You are now logged in as: " + user);
-        loggedInAs.setBounds(150, 55, 400, 20);
-        panel.add(loggedInAs, BorderLayout.CENTER);
+        JLabel loggedInAs = new JLabel("You are now logged in as: " + user.getName(), SwingConstants.CENTER);
+        loggedInAs.setBounds(30, 55, 400, 20);
+//        loggedInAs.setPreferredSize(new Dimension(400, 20));
+//        loggedInAs.setHorizontalAlignment(JLabel.CENTER);
+        panel.add(loggedInAs);
+
 
         this.add(panel);
         this.setLocation(new Point(500, 300));
         this.setSize(new Dimension(500, 500));
         this.setVisible(true);
-        this.setResizable(true);
+        this.setResizable(false);
     }
 }
