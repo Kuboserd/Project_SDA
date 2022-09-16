@@ -46,7 +46,7 @@ public class RegisterPanel extends JPanel implements Component {
         addActionCancelButton();
     }
 
-    public void addAllToPanel() {
+    private void addAllToPanel() {
         add(firstNameJL);
         add(firstNameJTF);
         add(lastNameJL);
@@ -65,7 +65,7 @@ public class RegisterPanel extends JPanel implements Component {
         add(backJB);
     }
 
-    public void setAllBounds() {
+    private void setAllBounds() {
         firstNameJL.setBounds(70, 8, 70, 20);
         firstNameJTF.setBounds(70, 27, 193, 28);
         lastNameJL.setBounds(70, 55, 70, 20);
@@ -84,7 +84,7 @@ public class RegisterPanel extends JPanel implements Component {
         backJB.setBounds(170, 320, 90, 25);
     }
 
-    public void addKeyLisToEmailJTF() {
+    private void addKeyLisToEmailJTF() {
         incorrectEmailJL.setForeground(Color.RED);
         incorrectEmailJL.setVisible(false);
         emailJTF.addKeyListener(new KeyAdapter() {
@@ -101,7 +101,7 @@ public class RegisterPanel extends JPanel implements Component {
         });
     }
 
-    public void addKeyLisToPhoneJTF() {
+    private void addKeyLisToPhoneJTF() {
         incorrectPhoneJL.setForeground(Color.RED);
         incorrectPhoneJL.setVisible(false);
         phoneJTF.addKeyListener(new KeyAdapter() {
@@ -118,7 +118,7 @@ public class RegisterPanel extends JPanel implements Component {
         });
     }
 
-    public void setDateToAccount() {
+    private void setDateToAccount() {
         String name = firstNameJTF.getText();
         String lastName = lastNameJTF.getText();
         String email = emailJTF.getText();
@@ -127,29 +127,28 @@ public class RegisterPanel extends JPanel implements Component {
         account = new User(name, lastName, email, password, phone);
     }
 
-    public void addActionToRegButton() {
+    private void addActionToRegButton() {
         reg.setForeground(Color.WHITE);
         reg.setBackground(Color.BLACK);
         reg.addActionListener(e -> {
             if (checkField()) {
                 setDateToAccount();
                 Repository.addAccount(account);
-                System.out.println(addAccount);
-                System.out.println("Success");
+                JOptionPane.showMessageDialog(null,"Success");
             } else {
-                System.out.println("valid");
+                JOptionPane.showMessageDialog(null,"Error");
             }
         });
     }
 
-    public boolean checkField() {
+    private boolean checkField() {
         return !firstNameJTF.getText().isEmpty()
                 && !lastNameJTF.getText().isEmpty()
                 && !phoneJTF.getText().isEmpty()
                 && addAccount;
     }
 
-    public void addActionCancelButton() {
+    private void addActionCancelButton() {
         backJB.setForeground(Color.WHITE);
         backJB.setBackground(Color.BLACK);
         backJB.addActionListener(e ->
