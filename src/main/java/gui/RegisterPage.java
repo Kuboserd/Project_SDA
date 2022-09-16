@@ -48,7 +48,7 @@ public class RegisterPage extends JFrame {
 
         JLabel isIncorrectEmail = new JLabel("Invalid E-Mail");
         isIncorrectEmail.setBounds(200, 102, 100, 20);
-        isIncorrectEmail.setForeground(Color.RED);  //TODO
+        isIncorrectEmail.setForeground(Color.RED); //TODO
         isIncorrectEmail.setVisible(false);         //TODO
         panel.add(isIncorrectEmail);
 

@@ -40,6 +40,10 @@ public class GuiFrame extends JFrame implements Mediator {
     @Override
     public void offVisibleRegPanel() {
         remove(reg);
+        add(login);
+        this.revalidate();
+        login.setVisible(true);
+        setSize(350,200);
     }
 
     @Override
