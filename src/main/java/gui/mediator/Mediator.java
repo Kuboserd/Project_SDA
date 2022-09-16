@@ -2,10 +2,9 @@ package gui.mediator;
 
 public interface Mediator {
     void registerComponent(Component component);
-    void addToFrame();
-    void offVisibleLogPanel();
+    void offLogJpOnRegJp();
     void onVisibleLogPanel();
-    void offVisibleRegPanel();
+    void offRegJpOnLogJp();
     void onVisibleRegPanel();
 
 }

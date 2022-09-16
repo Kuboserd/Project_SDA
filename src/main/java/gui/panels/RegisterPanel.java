@@ -1,4 +1,4 @@
-package gui;
+package gui.panels;
 
 import gui.mediator.Component;
 import gui.mediator.Mediator;
@@ -11,6 +11,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
+import java.util.Arrays;
 
 public class RegisterPanel extends JPanel implements Component {
     private JLabel firstNameJL = new JLabel("First name");
@@ -45,7 +46,7 @@ public class RegisterPanel extends JPanel implements Component {
         addActionCancelButton();
     }
 
-    public void addAllToPanel(){
+    public void addAllToPanel() {
         add(firstNameJL);
         add(firstNameJTF);
         add(lastNameJL);
@@ -64,7 +65,7 @@ public class RegisterPanel extends JPanel implements Component {
         add(backJB);
     }
 
-    public void setAllBounds(){
+    public void setAllBounds() {
         firstNameJL.setBounds(70, 8, 70, 20);
         firstNameJTF.setBounds(70, 27, 193, 28);
         lastNameJL.setBounds(70, 55, 70, 20);
@@ -80,7 +81,7 @@ public class RegisterPanel extends JPanel implements Component {
         incorrectPhoneJL.setBounds(170, 149, 150, 20);
         phoneJTF.setBounds(70, 168, 193, 28);
         reg.setBounds(70, 320, 90, 25);
-        backJB.setBounds(170,320,90,25);
+        backJB.setBounds(170, 320, 90, 25);
     }
 
     public void addKeyLisToEmailJTF() {
@@ -100,7 +101,7 @@ public class RegisterPanel extends JPanel implements Component {
         });
     }
 
-    public void addKeyLisToPhoneJTF(){
+    public void addKeyLisToPhoneJTF() {
         incorrectPhoneJL.setForeground(Color.RED);
         incorrectPhoneJL.setVisible(false);
         phoneJTF.addKeyListener(new KeyAdapter() {
@@ -116,16 +117,19 @@ public class RegisterPanel extends JPanel implements Component {
             }
         });
     }
-    public void setDateToAccount(){
+
+    public void setDateToAccount() {
         String name = firstNameJTF.getText();
         String lastName = lastNameJTF.getText();
         String email = emailJTF.getText();
-        String password = pswdJTF.getPassword().toString();
+        String password = String.valueOf(pswdJTF.getPassword());
         String phone = phoneJTF.getText();
-        account = new User(name,lastName,email,password,phone);
+        account = new User(name, lastName, email, password, phone);
     }
 
-    public void addActionToRegButton(){
+    public void addActionToRegButton() {
+        reg.setForeground(Color.WHITE);
+        reg.setBackground(Color.BLACK);
         reg.addActionListener(e -> {
             if (checkField()) {
                 setDateToAccount();
@@ -138,16 +142,18 @@ public class RegisterPanel extends JPanel implements Component {
         });
     }
 
-    public boolean checkField(){
+    public boolean checkField() {
         return !firstNameJTF.getText().isEmpty()
-            &&!lastNameJTF.getText().isEmpty()
-            &&!phoneJTF.getText().isEmpty()
-            &&addAccount;
+                && !lastNameJTF.getText().isEmpty()
+                && !phoneJTF.getText().isEmpty()
+                && addAccount;
     }
 
-    public void addActionCancelButton(){
+    public void addActionCancelButton() {
+        backJB.setForeground(Color.WHITE);
+        backJB.setBackground(Color.BLACK);
         backJB.addActionListener(e ->
-                mediator.offVisibleRegPanel());
+                mediator.offRegJpOnLogJp());
     }
 
     @Override
@@ -156,7 +162,7 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return "regPanel";
     }
 }

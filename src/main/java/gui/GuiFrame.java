@@ -19,12 +19,7 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void addToFrame() {
-
-    }
-
-    @Override
-    public void offVisibleLogPanel() {
+    public void offLogJpOnRegJp() {
         remove(login);
         add(reg);
         this.revalidate();
@@ -38,7 +33,7 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void offVisibleRegPanel() {
+    public void offRegJpOnLogJp() {
         remove(reg);
         add(login);
         this.revalidate();

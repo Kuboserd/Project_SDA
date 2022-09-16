@@ -1,5 +1,6 @@
-package gui;
+package gui.panels;
 
+import gui.MenuException;
 import gui.mediator.Component;
 import gui.mediator.Mediator;
 import util.repository.Repository;
@@ -71,7 +72,7 @@ public class LoginPanel extends JPanel implements Component {
         reg.setBackground(Color.BLACK);
         add(login);
         reg.addActionListener(e -> {
-            mediator.offVisibleLogPanel();
+            mediator.offLogJpOnRegJp();
           //  mediator.onVisibleRegPanel();
         });
     }
