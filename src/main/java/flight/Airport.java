@@ -50,4 +50,5 @@ public class Airport {
 
     @Column(name = "city")
     private boolean isCity;
+
 }

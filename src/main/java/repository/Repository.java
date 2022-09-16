@@ -1,5 +1,6 @@
 package repository;
 
+import config.MenuException;
 import flight.Airport;
 import flight.Flight;
 import tickets.Ticket;
@@ -40,6 +41,14 @@ public class Repository {
         return entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
                 .setParameter("email", email)
                 .getResultList();
+    }
+
+    public static Account getAccountByMail(String email) throws MenuException {
+        return entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
+                .setParameter("email", email)
+                .getResultStream()
+                .findFirst()
+                .orElseThrow(new MenuException("Invalid email"));
     }
 
     public static List<Airport> getByCityName(String cityName){

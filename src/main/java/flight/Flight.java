@@ -35,20 +35,16 @@ public class Flight {
     @Column(name = "arrival_time")
     private LocalDateTime arrivalTime;
 
-    public Airport getAirport() {
-        return airport;
+    public Airport getStartAirport() {
+        return startAirport;
+    }
+
+    public Airport getEndAirport() {
+        return endAirport;
     }
 
     public Plane getPlane() {
         return plane;
-    }
-
-    public String getDestination() {
-        return destination;
-    }
-
-    public String getOrigin() {
-        return origin;
     }
 
     public LocalDateTime getDepartureTime() {

@@ -34,18 +34,17 @@ public class PdfWriteExample {
             Paragraph pOwner = new Paragraph("Owner:" + user.getName() + " " + user.getSurname());
             document.add(pOwner);
 
-            Paragraph pFrom = new Paragraph("From: " + ticket.getFlight().getOrigin());
+            Paragraph pFrom = new Paragraph("From: " + ticket.getFlight().getStartAirport());
             document.add(pFrom);
 
-            Paragraph pTo = new Paragraph("To: " + ticket.getFlight().getDestination());
+            Paragraph pTo = new Paragraph("To: " + ticket.getFlight().getEndAirport());
             document.add(pTo);
 
-            Paragraph pDepartureTime = new Paragraph("Departure time: " + ticket.getFlight().getDepartureTime());
+           /* Paragraph pDepartureTime = new Paragraph("Departure time: " + ticket.getFlight().getDepartureTime());
             document.add(pDepartureTime);
 
             Paragraph pArrivalTime = new Paragraph("Arrival time: " + ticket.getFlight().getArrivalTime());
-            document.add(pArrivalTime);
-
+            document.add(pArrivalTime);*/
 
             /*Paragraph p2 = new Paragraph();
             p2.add(ticket.getFlight().getDestination()); //no alignment
@@ -69,7 +68,6 @@ public class PdfWriteExample {
             e.printStackTrace();
         }
     }
-
 
     private List<Ticket> getUserTicket(){
         return user.getTicketList();

@@ -12,7 +12,7 @@ public class CreateAccount {
     }
 
     public void checkEmail(String email) throws MenuException {
-        int i = (int) Repository.getByMail(email).size();
+        int i = Repository.getByMail(email).size();
         if (i == 1) {
             throw new MenuException("Error, this e-mail address has been used");
         }
