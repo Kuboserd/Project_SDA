@@ -2,8 +2,8 @@ package config.exoportticket;
 
 import com.itextpdf.text.*;
 import com.itextpdf.text.pdf.PdfWriter;
-import tickets.Ticket;
-import users.User;
+import entity.tickets.Ticket;
+import entity.users.User;
 
 import java.io.File;
 import java.io.FileNotFoundException;

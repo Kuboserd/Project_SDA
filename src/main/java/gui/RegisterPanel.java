@@ -2,9 +2,9 @@ package gui;
 
 import gui.mediator.Component;
 import gui.mediator.Mediator;
-import repository.Repository;
-import users.Account;
-import users.User;
+import util.repository.Repository;
+import entity.users.Account;
+import entity.users.User;
 import util.ValidationUtil;
 
 import javax.swing.*;
@@ -28,7 +28,7 @@ public class RegisterPanel extends JPanel implements Component {
     private JLabel incorrectPhoneJL = new JLabel("Invalid phone number");
     private JTextField phoneJTF = new JTextField();
     private JButton reg = new JButton("Register");
-    private JButton cancel = new JButton("Cancel");
+    private JButton backJB = new JButton("Back");
     private Mediator mediator;
     private Account account;
     private boolean addAccount = false;
@@ -61,7 +61,7 @@ public class RegisterPanel extends JPanel implements Component {
         add(incorrectPhoneJL);
         add(phoneJTF);
         add(reg);
-        add(cancel);
+        add(backJB);
     }
 
     public void setAllBounds(){
@@ -80,7 +80,7 @@ public class RegisterPanel extends JPanel implements Component {
         incorrectPhoneJL.setBounds(170, 149, 150, 20);
         phoneJTF.setBounds(70, 168, 193, 28);
         reg.setBounds(70, 320, 90, 25);
-        cancel.setBounds(170,320,90,25);
+        backJB.setBounds(170,320,90,25);
     }
 
     public void addKeyLisToEmailJTF() {
@@ -146,7 +146,7 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     public void addActionCancelButton(){
-        cancel.addActionListener(e ->
+        backJB.addActionListener(e ->
                 mediator.offVisibleRegPanel());
     }
 

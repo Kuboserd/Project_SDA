@@ -1,6 +1,6 @@
-package flight;
+package entity.flight;
 
-import tickets.Ticket;
+import entity.tickets.Ticket;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;

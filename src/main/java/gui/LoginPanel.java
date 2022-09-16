@@ -1,10 +1,9 @@
 package gui;
 
-import config.MenuException;
 import gui.mediator.Component;
 import gui.mediator.Mediator;
-import repository.Repository;
-import users.Account;
+import util.repository.Repository;
+import entity.users.Account;
 
 import javax.swing.*;
 import java.awt.*;

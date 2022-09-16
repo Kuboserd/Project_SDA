@@ -1,10 +1,9 @@
-package repository;
+package util.repository;
 
-import config.MenuException;
-import flight.Airport;
-import flight.Flight;
-import tickets.Ticket;
-import users.Account;
+import gui.MenuException;
+import entity.flight.Airport;
+import entity.tickets.Ticket;
+import entity.users.Account;
 import util.HibernateUtil;
 
 import javax.persistence.EntityManager;

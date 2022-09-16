@@ -1,8 +1,7 @@
 package config.exoportticket;
 
-import flight.Airport;
-import repository.Repository;
-import users.Account;
+import entity.flight.Airport;
+import util.repository.Repository;
 
 import java.util.List;
 

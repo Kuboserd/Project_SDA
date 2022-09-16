@@ -1,4 +1,4 @@
-package flight;
+package entity.flight;
 
 
 import javax.persistence.*;

@@ -1,7 +1,7 @@
-package tickets;
+package entity.tickets;
 
-import flight.Flight;
-import users.User;
+import entity.flight.Flight;
+import entity.users.User;
 
 import javax.persistence.*;
 

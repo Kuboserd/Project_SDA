@@ -1,4 +1,4 @@
-package config;
+package gui;
 
 import java.util.function.Supplier;
 

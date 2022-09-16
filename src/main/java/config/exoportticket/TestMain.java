@@ -1,7 +1,7 @@
 package config.exoportticket;
 
-import tickets.Ticket;
-import users.User;
+import entity.tickets.Ticket;
+import entity.users.User;
 
 public class TestMain {
     public static void main(String[] args) {
