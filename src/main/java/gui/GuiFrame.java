@@ -4,10 +4,8 @@ import entity.users.Account;
 import entity.users.Admin;
 import entity.users.ServiceAssistant;
 import entity.users.User;
-import gui.designpatterns.AccountStrategy;
-import gui.designpatterns.Component;
-import gui.designpatterns.Mediator;
-import gui.designpatterns.UserRegister;
+import gui.designpatterns.*;
+import gui.panels.AdminPanel;
 import gui.panels.RegisterPanel;
 
 import javax.swing.*;
@@ -16,10 +14,9 @@ public class GuiFrame extends JFrame implements Mediator {
     private Account account;
     private JPanel login;
     private RegisterPanel regUser;
-    private JPanel admin;
+    private AdminPanel admin;
     private JPanel assistant;
     private JPanel user;
-    private AccountStrategy accountStrategy;
     @Override
     public void registerComponent(Component component) {
         component.setMediator(this);
@@ -28,7 +25,7 @@ public class GuiFrame extends JFrame implements Mediator {
             case "regPanel" -> regUser = (RegisterPanel) component;
             case "userPanel" -> user = (JPanel) component;
             case "assistantPanel" -> assistant = (JPanel) component;
-            case "adminPanel" -> admin = (JPanel) component;
+            case "adminPanel" -> admin = (AdminPanel) component;
         }
     }
 
@@ -36,10 +33,11 @@ public class GuiFrame extends JFrame implements Mediator {
     public void choicePanel() {
         if(account.getClass().equals(Admin.class)){
             remove(login);
+            admin.setAccountStrategy(new AssistantRegister());
             add(admin);
             this.revalidate();
             admin.setVisible(true);
-            setSize(350,400);
+            setSize(350,450);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
