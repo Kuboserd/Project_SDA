@@ -72,8 +72,8 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void offAdminPanelOnLogPanel() {
-        remove(adminPanel);
+    public void offPanelOnLoginPanel(JPanel jPanel) {
+        remove(jPanel);
         add(login);
         this.revalidate();
         login.setVisible(true);

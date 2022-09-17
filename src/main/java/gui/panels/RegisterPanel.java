@@ -154,7 +154,7 @@ public class RegisterPanel extends JPanel implements Component {
         backJB.setForeground(Color.WHITE);
         backJB.setBackground(Color.BLACK);
         backJB.addActionListener(e ->
-                mediator.offRegJpOnLogJp());
+                mediator.offPanelOnLoginPanel(this));
     }
 
     public JButton getBackJB() {

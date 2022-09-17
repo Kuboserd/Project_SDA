@@ -38,7 +38,7 @@ public class AdminPanel extends JPanel implements Component {
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
             registerPanel.setMediator(mediator);
-            registerPanel.getBackJB().addActionListener(e1 -> mediator.offAdminPanelOnLogPanel());
+            registerPanel.getBackJB().addActionListener(e1 -> mediator.offPanelOnLoginPanel(this));
             registerPanel.getInfoJL().setText("Register service assistant");
             registerPanel.setAccountStrategy(accountStrategy);
             registerPanel.setVisible(true);

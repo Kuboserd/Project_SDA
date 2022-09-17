@@ -11,12 +11,14 @@ public class UserMenuPanel extends JPanel implements Component {
     private JButton fundWallet = new JButton("Fund wallet");
     private JButton yourTicket = new JButton("Your ticket");
     private JButton contactAssistant = new JButton("Contact with Assistant");
+    private JButton backJB = new JButton("Back");
     private ChangeDataPanel changeDataPanel;
     private Mediator mediator;
 
     public UserMenuPanel() {
         setAllBounds();
         addActionChangeDate();
+        addActionBackButton();
         addAllToPanel();
         setLayout(null);
         setVisible(true);
@@ -28,6 +30,7 @@ public class UserMenuPanel extends JPanel implements Component {
         add(fundWallet);
         add(yourTicket);
         add(contactAssistant);
+        add(backJB);
     }
 
     private void setAllBounds() {
@@ -36,6 +39,7 @@ public class UserMenuPanel extends JPanel implements Component {
         fundWallet.setBounds(20, 50, 140, 25);
         yourTicket.setBounds(170, 50, 140, 25);
         contactAssistant.setBounds(70, 80, 200, 25);
+        backJB.setBounds(260,440,70,25);
     }
 
     private void addActionChangeDate() {
@@ -43,7 +47,17 @@ public class UserMenuPanel extends JPanel implements Component {
             changeDataPanel = mediator.onChangeDataPanel();
             add(changeDataPanel);
             changeDataPanel.setAccount(mediator.getAccount());
-            changeDataPanel.setBounds(0,110,350,400);
+            changeDataPanel.setBounds(0,110,350,330);
+        });
+    }
+
+    /* TODO
+    *   Zmienić z cofania do głównego ekranu na wylogowanie
+    *   account ustawienie na null
+    *   opcjonalnie wyczyszczenie JTF w menu*/
+    private void addActionBackButton(){
+        backJB.addActionListener(e -> {
+            mediator.offPanelOnLoginPanel(this);
         });
     }
 
