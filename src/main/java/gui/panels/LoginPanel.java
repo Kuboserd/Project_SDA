@@ -53,6 +53,7 @@ public class LoginPanel extends JPanel implements Component {
             String mail = emailJTF.getText();
             try {
                 account = Repository.getAccountByMail(mail);
+                System.out.println(account);
             } catch (MenuException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
                 return;
@@ -62,6 +63,8 @@ public class LoginPanel extends JPanel implements Component {
                 JOptionPane.showMessageDialog(null,"Invalid password");
                 return;
             }
+            mediator.setAccount(account);
+            mediator.choicePanel();
             System.out.println("Successful");
         });
     }
@@ -70,10 +73,8 @@ public class LoginPanel extends JPanel implements Component {
         reg.setBounds(200, 110, 90, 25);
         reg.setForeground(Color.WHITE);
         reg.setBackground(Color.BLACK);
-        add(login);
         reg.addActionListener(e -> {
             mediator.offLogJpOnRegJp();
-          //  mediator.onVisibleRegPanel();
         });
     }
 

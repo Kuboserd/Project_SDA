@@ -1,5 +1,6 @@
 package gui.panels;
 
+import entity.users.Admin;
 import gui.mediator.Component;
 import gui.mediator.Mediator;
 import util.repository.Repository;
@@ -41,7 +42,6 @@ public class RegisterPanel extends JPanel implements Component {
         addAllToPanel();
         setLayout(null);
         setVisible(true);
-        checkField();
         addActionToRegButton();
         addActionCancelButton();
     }

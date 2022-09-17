@@ -43,11 +43,12 @@ public class Repository {
     }
 
     public static Account getAccountByMail(String email) throws MenuException {
-        return entityManager.createQuery("FROM User u WHERE u.email = :email", Account.class)
+        return entityManager.createQuery("FROM Account a WHERE a.email = :email", Account.class)
                 .setParameter("email", email)
                 .getResultStream()
                 .findFirst()
                 .orElseThrow(new MenuException("Invalid email"));
+
     }
 
     public static List<Airport> getByCityName(String cityName){
