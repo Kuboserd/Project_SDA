@@ -102,6 +102,7 @@ public class GuiFrame extends JFrame implements Mediator {
     public void createGui() {
         setTitle("Flybook - Login Page");
         add(login);
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         setSize(350, 200);
         setResizable(true);
         setVisible(true);
