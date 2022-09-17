@@ -5,7 +5,6 @@ import gui.designpatterns.Component;
 import gui.designpatterns.Mediator;
 import util.repository.Repository;
 import entity.users.Account;
-import entity.users.User;
 import util.ValidationUtil;
 
 import javax.swing.*;
@@ -14,6 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class RegisterPanel extends JPanel implements Component {
+    private JLabel info = new JLabel("Register user");
     private JLabel firstNameJL = new JLabel("First name");
     private JTextField firstNameJTF = new JTextField();
     private JLabel lastNameJL = new JLabel("Last name");
@@ -47,6 +47,7 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     private void addAllToPanel() {
+        add(info);
         add(firstNameJL);
         add(firstNameJTF);
         add(lastNameJL);
@@ -66,22 +67,23 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     private void setAllBounds() {
-        firstNameJL.setBounds(70, 8, 70, 20);
-        firstNameJTF.setBounds(70, 27, 193, 28);
-        lastNameJL.setBounds(70, 55, 70, 20);
-        lastNameJTF.setBounds(70, 74, 193, 28);
-        emailJL.setBounds(70, 102, 70, 20);
-        incorrectEmailJL.setBounds(170, 102, 100, 20);
-        emailJTF.setBounds(70, 121, 193, 28);
-        pswdJL.setBounds(70, 196, 70, 20);
-        pswdJTF.setBounds(70, 215, 190, 28);
-        confirmPswdJL.setBounds(70, 243, 120, 20);
-        confirmPSWDJTF.setBounds(70, 262, 190, 28);
-        phoneJL.setBounds(70, 149, 150, 20);
-        incorrectPhoneJL.setBounds(170, 149, 150, 20);
-        phoneJTF.setBounds(70, 168, 193, 28);
-        reg.setBounds(70, 320, 90, 25);
-        backJB.setBounds(170, 320, 90, 25);
+        info.setBounds(90,0,150,35);
+        firstNameJL.setBounds(70, 38, 70, 20);
+        firstNameJTF.setBounds(70, 57, 193, 28);
+        lastNameJL.setBounds(70, 85, 70, 20);
+        lastNameJTF.setBounds(70, 104, 193, 28);
+        emailJL.setBounds(70, 132, 70, 20);
+        incorrectEmailJL.setBounds(170, 132, 100, 20);
+        emailJTF.setBounds(70, 151, 193, 28);
+        pswdJL.setBounds(70, 226, 70, 20);
+        pswdJTF.setBounds(70, 245, 190, 28);
+        confirmPswdJL.setBounds(70, 273, 120, 20);
+        confirmPSWDJTF.setBounds(70, 292, 190, 28);
+        phoneJL.setBounds(70, 179, 150, 20);
+        incorrectPhoneJL.setBounds(170, 179, 150, 20);
+        phoneJTF.setBounds(70, 198, 193, 28);
+        reg.setBounds(70, 350, 90, 25);
+        backJB.setBounds(170, 350, 90, 25);
     }
 
     private void addKeyLisToEmailJTF() {
@@ -155,8 +157,16 @@ public class RegisterPanel extends JPanel implements Component {
                 mediator.offRegJpOnLogJp());
     }
 
+    public JButton getBackJB() {
+        return backJB;
+    }
+
     public void setAccountStrategy(AccountStrategy accountStrategy) {
         this.accountStrategy = accountStrategy;
+    }
+
+    public JLabel getInfoJL() {
+        return info;
     }
 
     @Override

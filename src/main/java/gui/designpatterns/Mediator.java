@@ -7,7 +7,7 @@ public interface Mediator {
     void setAccount(Account account);
     void choicePanel();
     void offLogJpOnRegJp();
-    void onVisibleLogPanel();
+    void offAdminPanelOnLogPanel();
     void offRegJpOnLogJp();
     void onVisibleRegPanel();
 

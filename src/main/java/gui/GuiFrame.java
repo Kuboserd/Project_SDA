@@ -14,7 +14,7 @@ public class GuiFrame extends JFrame implements Mediator {
     private Account account;
     private JPanel login;
     private RegisterPanel regUser;
-    private AdminPanel admin;
+    private AdminPanel adminPanel;
     private JPanel assistant;
     private JPanel user;
     @Override
@@ -25,7 +25,7 @@ public class GuiFrame extends JFrame implements Mediator {
             case "regPanel" -> regUser = (RegisterPanel) component;
             case "userPanel" -> user = (JPanel) component;
             case "assistantPanel" -> assistant = (JPanel) component;
-            case "adminPanel" -> admin = (AdminPanel) component;
+            case "adminPanel" -> adminPanel = (AdminPanel) component;
         }
     }
 
@@ -33,11 +33,11 @@ public class GuiFrame extends JFrame implements Mediator {
     public void choicePanel() {
         if(account.getClass().equals(Admin.class)){
             remove(login);
-            admin.setAccountStrategy(new AssistantRegister());
-            add(admin);
+            adminPanel.setAccountStrategy(new AssistantRegister());
+            add(adminPanel);
             this.revalidate();
-            admin.setVisible(true);
-            setSize(350,450);
+            adminPanel.setVisible(true);
+            setSize(350,550);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
@@ -65,12 +65,16 @@ public class GuiFrame extends JFrame implements Mediator {
         add(regUser);
         this.revalidate();
         regUser.setVisible(true);
-        setSize(350,400);
+        setSize(350,430);
     }
 
     @Override
-    public void onVisibleLogPanel() {
+    public void offAdminPanelOnLogPanel() {
+        remove(adminPanel);
         add(login);
+        this.revalidate();
+        login.setVisible(true);
+        setSize(350,200);
     }
 
     @Override

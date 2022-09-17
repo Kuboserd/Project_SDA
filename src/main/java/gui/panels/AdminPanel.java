@@ -7,8 +7,9 @@ import gui.designpatterns.Mediator;
 import javax.swing.*;
 
 public class AdminPanel extends JPanel implements Component {
-    private JButton flights = new JButton("Flights menu");
-    private JButton regAssistant = new JButton("Register Assistant");
+    private JButton flightsJB = new JButton("Flights menu");
+    private JButton regAssistantJB = new JButton("Register Assistant");
+    //private JButton backJB = new JButton("Back");
     private Mediator mediator;
     private AccountStrategy accountStrategy;
     private RegisterPanel registerPanel = new RegisterPanel();
@@ -22,25 +23,26 @@ public class AdminPanel extends JPanel implements Component {
         setVisible(true);
     }
 
-    private void addAllToPanel(){
-        add(flights);
-        add(regAssistant);
+    private void addAllToPanel() {
+        add(flightsJB);
+        add(regAssistantJB);
         registerPanel.setVisible(false);
         add(registerPanel);
     }
 
-    private void setAllBounds(){
-        flights.setBounds(20,20,140,25);
-        regAssistant.setBounds(170,20,140,25);
-        registerPanel.setBounds(0,40,350,400);
+    private void setAllBounds() {
+        flightsJB.setBounds(20, 10, 140, 25);
+        regAssistantJB.setBounds(170, 10, 140, 25);
+        registerPanel.setBounds(0, 50, 350, 400);
     }
 
-    private void createRegAssistantButton(){
-        regAssistant.addActionListener(e -> {
-           registerPanel.setAccountStrategy(accountStrategy);
-           registerPanel.setMediator(mediator);
-           registerPanel.setVisible(true);
-           //registerPanel.setBounds(0,40,350,400);
+    private void createRegAssistantButton() {
+        regAssistantJB.addActionListener(e -> {
+            registerPanel.getBackJB().addActionListener(e1 -> mediator.offAdminPanelOnLogPanel());
+            registerPanel.getInfoJL().setText("Register service assistant");
+            registerPanel.setAccountStrategy(accountStrategy);
+            registerPanel.setMediator(mediator);
+            registerPanel.setVisible(true);
         });
     }
 
@@ -50,7 +52,7 @@ public class AdminPanel extends JPanel implements Component {
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return "adminPanel";
     }
 

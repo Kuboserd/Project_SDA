@@ -25,8 +25,8 @@ public class AssistantPanel extends JPanel implements Component {
     }
 
     private void setAllBounds(){
-        changeDate.setBounds(20,20,140,25);
-        viewFlights.setBounds(170,20,140,25);
+        changeDate.setBounds(10,20,140,25);
+        viewFlights.setBounds(160,20,140,25);
         viewMessage.setBounds(310,20,140,25);
     }
 
