@@ -53,7 +53,6 @@ public class LoginPanel extends JPanel implements Component {
             String mail = emailJTF.getText();
             try {
                 account = Repository.getAccountByMail(mail);
-                System.out.println(account);
             } catch (MenuException ex) {
                 JOptionPane.showMessageDialog(null, ex.getMessage());
                 return;
@@ -65,7 +64,6 @@ public class LoginPanel extends JPanel implements Component {
             }
             mediator.setAccount(account);
             mediator.choicePanel();
-            System.out.println("Successful");
         });
     }
 

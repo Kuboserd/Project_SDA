@@ -6,6 +6,7 @@ import entity.users.ServiceAssistant;
 import entity.users.User;
 import gui.designpatterns.*;
 import gui.panels.AdminPanel;
+import gui.panels.ChangeDataPanel;
 import gui.panels.RegisterPanel;
 
 import javax.swing.*;
@@ -17,6 +18,7 @@ public class GuiFrame extends JFrame implements Mediator {
     private AdminPanel adminPanel;
     private JPanel assistant;
     private JPanel user;
+    private ChangeDataPanel changeDataPanel;
     @Override
     public void registerComponent(Component component) {
         component.setMediator(this);
@@ -26,6 +28,7 @@ public class GuiFrame extends JFrame implements Mediator {
             case "userPanel" -> user = (JPanel) component;
             case "assistantPanel" -> assistant = (JPanel) component;
             case "adminPanel" -> adminPanel = (AdminPanel) component;
+            case "changeDataPanel" -> changeDataPanel = (ChangeDataPanel) component;
         }
     }
 
@@ -49,7 +52,7 @@ public class GuiFrame extends JFrame implements Mediator {
             add(user);
             this.revalidate();
             user.setVisible(true);
-            setSize(350,400);
+            setSize(350,550);
         }
     }
 
@@ -87,8 +90,13 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void onVisibleRegPanel() {
-        add(regUser);
+    public ChangeDataPanel onChangeDataPanel() {
+       return changeDataPanel;
+    }
+
+    @Override
+    public Account getAccount() {
+        return account;
     }
 
     public void createGui() {

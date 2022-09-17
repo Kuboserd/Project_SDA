@@ -43,7 +43,7 @@ public class RegisterPanel extends JPanel implements Component {
         setLayout(null);
         setVisible(true);
         addActionToRegButton();
-        addActionCancelButton();
+        addActionBackButton();
     }
 
     private void addAllToPanel() {
@@ -150,7 +150,7 @@ public class RegisterPanel extends JPanel implements Component {
                 && addAccount;
     }
 
-    private void addActionCancelButton() {
+    private void addActionBackButton() {
         backJB.setForeground(Color.WHITE);
         backJB.setBackground(Color.BLACK);
         backJB.addActionListener(e ->

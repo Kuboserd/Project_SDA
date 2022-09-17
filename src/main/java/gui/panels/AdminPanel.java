@@ -14,7 +14,6 @@ public class AdminPanel extends JPanel implements Component {
     private AccountStrategy accountStrategy;
     private RegisterPanel registerPanel = new RegisterPanel();
 
-
     public AdminPanel() {
         setAllBounds();
         addAllToPanel();
@@ -38,10 +37,10 @@ public class AdminPanel extends JPanel implements Component {
 
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
+            registerPanel.setMediator(mediator);
             registerPanel.getBackJB().addActionListener(e1 -> mediator.offAdminPanelOnLogPanel());
             registerPanel.getInfoJL().setText("Register service assistant");
             registerPanel.setAccountStrategy(accountStrategy);
-            registerPanel.setMediator(mediator);
             registerPanel.setVisible(true);
         });
     }

@@ -11,16 +11,18 @@ public class UserMenuPanel extends JPanel implements Component {
     private JButton fundWallet = new JButton("Fund wallet");
     private JButton yourTicket = new JButton("Your ticket");
     private JButton contactAssistant = new JButton("Contact with Assistant");
+    private ChangeDataPanel changeDataPanel;
     private Mediator mediator;
 
     public UserMenuPanel() {
         setAllBounds();
+        addActionChangeDate();
         addAllToPanel();
         setLayout(null);
         setVisible(true);
     }
 
-    private void addAllToPanel(){
+    private void addAllToPanel() {
         add(changeDate);
         add(viewFlights);
         add(fundWallet);
@@ -28,12 +30,21 @@ public class UserMenuPanel extends JPanel implements Component {
         add(contactAssistant);
     }
 
-    private void setAllBounds(){
+    private void setAllBounds() {
         changeDate.setBounds(20, 20, 140, 25);
-        viewFlights.setBounds(170,20,140,25);
-        fundWallet.setBounds(20,50,140,25);
-        yourTicket.setBounds(170,50,140,25);
-        contactAssistant.setBounds(20,80,140,25);
+        viewFlights.setBounds(170, 20, 140, 25);
+        fundWallet.setBounds(20, 50, 140, 25);
+        yourTicket.setBounds(170, 50, 140, 25);
+        contactAssistant.setBounds(70, 80, 200, 25);
+    }
+
+    private void addActionChangeDate() {
+        changeDate.addActionListener(e -> {
+            changeDataPanel = mediator.onChangeDataPanel();
+            add(changeDataPanel);
+            changeDataPanel.setAccount(mediator.getAccount());
+            changeDataPanel.setBounds(0,110,350,400);
+        });
     }
 
     @Override
@@ -42,9 +53,7 @@ public class UserMenuPanel extends JPanel implements Component {
     }
 
     @Override
-    public String getName(){
+    public String getName() {
         return "userPanel";
     }
-
-
 }

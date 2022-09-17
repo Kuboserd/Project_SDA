@@ -10,6 +10,7 @@ public class Main {
         gui.registerComponent(new UserMenuPanel());
         gui.registerComponent(new AssistantPanel());
         gui.registerComponent(new AdminPanel());
+        gui.registerComponent(new ChangeDataPanel());
         gui.createGui();
     }
 }
