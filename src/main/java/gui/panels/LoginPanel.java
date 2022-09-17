@@ -1,8 +1,8 @@
 package gui.panels;
 
 import gui.MenuException;
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
 import util.repository.Repository;
 import entity.users.Account;
 

@@ -1,7 +1,7 @@
 package gui.panels;
 
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
 
 import javax.swing.*;
 
@@ -24,7 +24,7 @@ public class AssistantPanel extends JPanel implements Component {
         add(viewMessage);
     }
 
-    public void setAllBounds(){
+    private void setAllBounds(){
         changeDate.setBounds(20,20,140,25);
         viewFlights.setBounds(170,20,140,25);
         viewMessage.setBounds(310,20,140,25);

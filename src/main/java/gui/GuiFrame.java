@@ -4,34 +4,32 @@ import entity.users.Account;
 import entity.users.Admin;
 import entity.users.ServiceAssistant;
 import entity.users.User;
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.AccountStrategy;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
+import gui.designpatterns.UserRegister;
+import gui.panels.RegisterPanel;
 
 import javax.swing.*;
 
 public class GuiFrame extends JFrame implements Mediator {
     private Account account;
     private JPanel login;
-    private JPanel reg;
+    private RegisterPanel regUser;
     private JPanel admin;
     private JPanel assistant;
     private JPanel user;
-
+    private AccountStrategy accountStrategy;
     @Override
     public void registerComponent(Component component) {
         component.setMediator(this);
         switch (component.getName()) {
             case "loginPanel" -> login = (JPanel) component;
-            case "regPanel" -> reg = (JPanel) component;
+            case "regPanel" -> regUser = (RegisterPanel) component;
             case "userPanel" -> user = (JPanel) component;
             case "assistantPanel" -> assistant = (JPanel) component;
             case "adminPanel" -> admin = (JPanel) component;
         }
-    }
-
-    @Override
-    public void setAccount(Account account) {
-        this.account = account;
     }
 
     @Override
@@ -58,11 +56,17 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    @Override
     public void offLogJpOnRegJp() {
         remove(login);
-        add(reg);
+        regUser.setAccountStrategy(new UserRegister());
+        add(regUser);
         this.revalidate();
-        reg.setVisible(true);
+        regUser.setVisible(true);
         setSize(350,400);
     }
 
@@ -73,7 +77,7 @@ public class GuiFrame extends JFrame implements Mediator {
 
     @Override
     public void offRegJpOnLogJp() {
-        remove(reg);
+        remove(regUser);
         add(login);
         this.revalidate();
         login.setVisible(true);
@@ -82,7 +86,7 @@ public class GuiFrame extends JFrame implements Mediator {
 
     @Override
     public void onVisibleRegPanel() {
-        add(reg);
+        add(regUser);
     }
 
     public void createGui() {

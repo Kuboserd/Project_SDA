@@ -1,4 +1,4 @@
-package gui.mediator;
+package gui.designpatterns;
 
 import entity.users.Account;
 

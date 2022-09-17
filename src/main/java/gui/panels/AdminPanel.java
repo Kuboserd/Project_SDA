@@ -1,7 +1,7 @@
 package gui.panels;
 
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
 
 import javax.swing.*;
 
@@ -17,12 +17,12 @@ public class AdminPanel extends JPanel implements Component {
         setVisible(true);
     }
 
-    public void addAllToPanel(){
+    private void addAllToPanel(){
         add(flights);
         add(regAssistant);
     }
 
-    public void setAllBounds(){
+    private void setAllBounds(){
         flights.setBounds(20,20,140,25);
         regAssistant.setBounds(170,20,140,25);
     }

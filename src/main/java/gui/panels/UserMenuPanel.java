@@ -1,7 +1,7 @@
 package gui.panels;
 
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
 
 import javax.swing.*;
 
@@ -20,7 +20,7 @@ public class UserMenuPanel extends JPanel implements Component {
         setVisible(true);
     }
 
-    public void addAllToPanel(){
+    private void addAllToPanel(){
         add(changeDate);
         add(viewFlights);
         add(fundWallet);
@@ -28,7 +28,7 @@ public class UserMenuPanel extends JPanel implements Component {
         add(contactAssistant);
     }
 
-    public void setAllBounds(){
+    private void setAllBounds(){
         changeDate.setBounds(20, 20, 140, 25);
         viewFlights.setBounds(170,20,140,25);
         fundWallet.setBounds(20,50,140,25);

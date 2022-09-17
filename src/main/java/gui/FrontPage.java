@@ -26,8 +26,8 @@ public class FrontPage extends JFrame {
 
         JLabel loggedInAs = new JLabel("You are now logged in as: " + user.getName(), SwingConstants.CENTER);
         loggedInAs.setBounds(30, 55, 400, 20);
-//        loggedInAs.setPreferredSize(new Dimension(400, 20));
-//        loggedInAs.setHorizontalAlignment(JLabel.CENTER);
+        loggedInAs.setPreferredSize(new Dimension(400, 20));
+        loggedInAs.setHorizontalAlignment(JLabel.CENTER);
         panel.add(loggedInAs);
 
 

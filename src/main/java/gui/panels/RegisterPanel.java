@@ -1,8 +1,8 @@
 package gui.panels;
 
-import entity.users.Admin;
-import gui.mediator.Component;
-import gui.mediator.Mediator;
+import gui.designpatterns.AccountStrategy;
+import gui.designpatterns.Component;
+import gui.designpatterns.Mediator;
 import util.repository.Repository;
 import entity.users.Account;
 import entity.users.User;
@@ -12,7 +12,6 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
-import java.util.Arrays;
 
 public class RegisterPanel extends JPanel implements Component {
     private JLabel firstNameJL = new JLabel("First name");
@@ -33,6 +32,7 @@ public class RegisterPanel extends JPanel implements Component {
     private JButton backJB = new JButton("Back");
     private Mediator mediator;
     private Account account;
+    private AccountStrategy accountStrategy;
     private boolean addAccount = false;
 
     public RegisterPanel() {
@@ -117,18 +117,14 @@ public class RegisterPanel extends JPanel implements Component {
             }
         });
     }
-    /*TODO
-    *  Zrobić uniwersalną rejestracje
-    *  Potrzebne do rejestracji assistant
-    *  Może strategy design*/
 
     private void setDateToAccount() {
-        String name = firstNameJTF.getText();
-        String lastName = lastNameJTF.getText();
-        String email = emailJTF.getText();
-        String password = String.valueOf(pswdJTF.getPassword());
-        String phone = phoneJTF.getText();
-        account = new User(name, lastName, email, password, phone);
+        account = accountStrategy.setAccountRegister();
+        account.setName(firstNameJTF.getText());
+        account.setSurname(lastNameJTF.getText());
+        account.setEmail(emailJTF.getText());
+        account.setPassword(String.valueOf(pswdJTF.getPassword()));
+        account.setPhone(phoneJTF.getText());
     }
 
     private void addActionToRegButton() {
@@ -157,6 +153,10 @@ public class RegisterPanel extends JPanel implements Component {
         backJB.setBackground(Color.BLACK);
         backJB.addActionListener(e ->
                 mediator.offRegJpOnLogJp());
+    }
+
+    public void setAccountStrategy(AccountStrategy accountStrategy) {
+        this.accountStrategy = accountStrategy;
     }
 
     @Override
