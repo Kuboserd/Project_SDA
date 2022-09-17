@@ -117,6 +117,10 @@ public class RegisterPanel extends JPanel implements Component {
             }
         });
     }
+    /*TODO
+    *  Zrobić uniwersalną rejestracje
+    *  Potrzebne do rejestracji assistant
+    *  Może strategy design*/
 
     private void setDateToAccount() {
         String name = firstNameJTF.getText();
