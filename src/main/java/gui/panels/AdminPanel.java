@@ -18,14 +18,15 @@ public class AdminPanel extends JPanel implements Component {
         setAllBounds();
         addAllToPanel();
         createRegAssistantButton();
+        createFlightButton();
         setLayout(null);
+        registerPanel.setVisible(false);
         setVisible(true);
     }
 
     private void addAllToPanel() {
         add(flightsJB);
         add(regAssistantJB);
-        registerPanel.setVisible(false);
         add(registerPanel);
     }
 
@@ -35,13 +36,28 @@ public class AdminPanel extends JPanel implements Component {
         registerPanel.setBounds(0, 50, 350, 400);
     }
 
+    /*TODO
+    *  usunąć zmienną registerPanel - zastąpić mediatorem
+    *   ustawić odpowiednio rejestracje*/
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
+            mediator.setSizePanel(350,550,this);
+            mediator.offPanel(mediator.getFlightMenuPanel());
             registerPanel.setMediator(mediator);
             registerPanel.getBackJB().addActionListener(e1 -> mediator.offPanelOnLoginPanel(this));
             registerPanel.getInfoJL().setText("Register service assistant");
             registerPanel.setAccountStrategy(accountStrategy);
             registerPanel.setVisible(true);
+        });
+    }
+
+    private void createFlightButton() {
+        flightsJB.addActionListener(e -> {
+            registerPanel.setVisible(false);
+            setSize(350,50);
+            mediator.setSizePanel(800,600,mediator.getFlightMenuPanel());
+            mediator.addPanelToFrame(mediator.getFlightMenuPanel());
+            mediator.onPanel(mediator.getFlightMenuPanel());
         });
     }
 

@@ -6,7 +6,7 @@ import gui.designpatterns.Mediator;
 import javax.swing.*;
 
 public class UserMenuPanel extends JPanel implements Component {
-    private JButton changeDate = new JButton("Change date");
+    private JButton changeData = new JButton("Change data");
     private JButton viewFlights = new JButton("View Flights");
     private JButton fundWallet = new JButton("Fund wallet");
     private JButton yourTicket = new JButton("Your ticket");
@@ -25,7 +25,7 @@ public class UserMenuPanel extends JPanel implements Component {
     }
 
     private void addAllToPanel() {
-        add(changeDate);
+        add(changeData);
         add(viewFlights);
         add(fundWallet);
         add(yourTicket);
@@ -34,7 +34,7 @@ public class UserMenuPanel extends JPanel implements Component {
     }
 
     private void setAllBounds() {
-        changeDate.setBounds(20, 20, 140, 25);
+        changeData.setBounds(20, 20, 140, 25);
         viewFlights.setBounds(170, 20, 140, 25);
         fundWallet.setBounds(20, 50, 140, 25);
         yourTicket.setBounds(170, 50, 140, 25);
@@ -43,8 +43,8 @@ public class UserMenuPanel extends JPanel implements Component {
     }
 
     private void addActionChangeDate() {
-        changeDate.addActionListener(e -> {
-            changeDataPanel = mediator.onChangeDataPanel();
+        changeData.addActionListener(e -> {
+            changeDataPanel = mediator.getChangeDataPanel();
             add(changeDataPanel);
             changeDataPanel.setAccount(mediator.getAccount());
             changeDataPanel.setBounds(0,110,350,330);

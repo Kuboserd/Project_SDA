@@ -13,7 +13,7 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
 public class RegisterPanel extends JPanel implements Component {
-    private JLabel info = new JLabel("Register user");
+    private JLabel info = new JLabel("Register user", SwingConstants.CENTER);
     private JLabel firstNameJL = new JLabel("First name");
     private JTextField firstNameJTF = new JTextField();
     private JLabel lastNameJL = new JLabel("Last name");
@@ -33,7 +33,8 @@ public class RegisterPanel extends JPanel implements Component {
     private Mediator mediator;
     private Account account;
     private AccountStrategy accountStrategy;
-    private boolean addAccount = false;
+    private boolean emailValid = false;
+    private boolean phoneValid = false;
 
     public RegisterPanel() {
         setAllBounds();
@@ -67,7 +68,7 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     private void setAllBounds() {
-        info.setBounds(90,0,150,35);
+        info.setBounds(90, 0, 150, 35);
         firstNameJL.setBounds(70, 38, 70, 20);
         firstNameJTF.setBounds(70, 57, 193, 28);
         lastNameJL.setBounds(70, 85, 70, 20);
@@ -94,10 +95,10 @@ public class RegisterPanel extends JPanel implements Component {
             public void keyReleased(KeyEvent e) {
                 if (ValidationUtil.isValidEmailAddress(emailJTF.getText())) {
                     incorrectEmailJL.setVisible(false);
-                    addAccount = true;
+                    emailValid = true;
                 } else {
                     incorrectEmailJL.setVisible(true);
-                    addAccount = false;
+                    emailValid = false;
                 }
             }
         });
@@ -111,10 +112,10 @@ public class RegisterPanel extends JPanel implements Component {
             public void keyReleased(KeyEvent e) {
                 if (ValidationUtil.isValidPhoneNumber(phoneJTF.getText())) {
                     incorrectPhoneJL.setVisible(false);
-                    addAccount = true;
+                    phoneValid = true;
                 } else {
                     incorrectPhoneJL.setVisible(true);
-                    addAccount = false;
+                    phoneValid = false;
                 }
             }
         });
@@ -136,9 +137,9 @@ public class RegisterPanel extends JPanel implements Component {
             if (checkField()) {
                 setDateToAccount();
                 Repository.addAccount(account);
-                JOptionPane.showMessageDialog(null,"Success");
+                JOptionPane.showMessageDialog(null, "Success");
             } else {
-                JOptionPane.showMessageDialog(null,"Error");
+                JOptionPane.showMessageDialog(null, "Error");
             }
         });
     }
@@ -147,14 +148,18 @@ public class RegisterPanel extends JPanel implements Component {
         return !firstNameJTF.getText().isEmpty()
                 && !lastNameJTF.getText().isEmpty()
                 && !phoneJTF.getText().isEmpty()
-                && addAccount;
+                && phoneValid
+                && emailValid;
     }
 
     private void addActionBackButton() {
         backJB.setForeground(Color.WHITE);
         backJB.setBackground(Color.BLACK);
-        backJB.addActionListener(e ->
-                mediator.offPanelOnLoginPanel(this));
+        backJB.addActionListener(e -> {
+            mediator.setSizePanel(350, 200, mediator.getLoginPanel());
+            mediator.offPanelOnLoginPanel(this);
+            mediator.onPanel(mediator.getLoginPanel());
+        });
     }
 
     public JButton getBackJB() {

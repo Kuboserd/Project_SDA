@@ -72,7 +72,10 @@ public class LoginPanel extends JPanel implements Component {
         reg.setForeground(Color.WHITE);
         reg.setBackground(Color.BLACK);
         reg.addActionListener(e -> {
-            mediator.offLogJpOnRegJp();
+            mediator.setAccountStrategy("user");
+            mediator.offPanel(this);
+            mediator.setSizePanel(350,450, mediator.getRegisterPanel());
+            mediator.onPanel(mediator.getRegisterPanel());
         });
     }
 

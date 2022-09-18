@@ -5,30 +5,30 @@ import entity.users.Admin;
 import entity.users.ServiceAssistant;
 import entity.users.User;
 import gui.designpatterns.*;
-import gui.panels.AdminPanel;
-import gui.panels.ChangeDataPanel;
-import gui.panels.RegisterPanel;
+import gui.panels.*;
 
 import javax.swing.*;
 
 public class GuiFrame extends JFrame implements Mediator {
     private Account account;
-    private JPanel login;
+    private LoginPanel login;
     private RegisterPanel regUser;
     private AdminPanel adminPanel;
     private JPanel assistant;
     private JPanel user;
     private ChangeDataPanel changeDataPanel;
+    private FlightMenuPanel flightMenuPanel;
     @Override
     public void registerComponent(Component component) {
         component.setMediator(this);
         switch (component.getName()) {
-            case "loginPanel" -> login = (JPanel) component;
+            case "loginPanel" -> login = (LoginPanel) component;
             case "regPanel" -> regUser = (RegisterPanel) component;
             case "userPanel" -> user = (JPanel) component;
             case "assistantPanel" -> assistant = (JPanel) component;
             case "adminPanel" -> adminPanel = (AdminPanel) component;
             case "changeDataPanel" -> changeDataPanel = (ChangeDataPanel) component;
+            case "flightMenuPanel" -> flightMenuPanel = (FlightMenuPanel) component;
         }
     }
 
@@ -38,19 +38,19 @@ public class GuiFrame extends JFrame implements Mediator {
             remove(login);
             adminPanel.setAccountStrategy(new AssistantRegister());
             add(adminPanel);
-            this.revalidate();
+            revalidate();
             adminPanel.setVisible(true);
             setSize(350,550);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
-            this.revalidate();
+            revalidate();
             assistant.setVisible(true);
             setSize(480,400);
         } else if (account.getClass().equals(User.class)) {
             remove(login);
             add(user);
-            this.revalidate();
+            revalidate();
             user.setVisible(true);
             setSize(350,550);
         }
@@ -62,36 +62,69 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void offLogJpOnRegJp() {
-        remove(login);
-        regUser.setAccountStrategy(new UserRegister());
-        add(regUser);
-        this.revalidate();
-        regUser.setVisible(true);
-        setSize(350,430);
-    }
-
-    @Override
     public void offPanelOnLoginPanel(JPanel jPanel) {
         remove(jPanel);
         add(login);
-        this.revalidate();
+        revalidate();
         login.setVisible(true);
         setSize(350,200);
     }
 
     @Override
-    public void offRegJpOnLogJp() {
-        remove(regUser);
-        add(login);
-        this.revalidate();
-        login.setVisible(true);
-        setSize(350,200);
+    public void onPanel(JPanel jPanel) {
+        add(jPanel);
+        revalidate();
+        jPanel.setVisible(true);
     }
 
     @Override
-    public ChangeDataPanel onChangeDataPanel() {
+    public void offPanel(JPanel jPanel){
+        remove(jPanel);
+        revalidate();
+    }
+
+    @Override
+    public void setAccountStrategy(String typeAccount){
+        switch (typeAccount){
+            case "user" -> regUser.setAccountStrategy(new UserRegister());
+            case "assistant" -> regUser.setAccountStrategy(new AssistantRegister());
+        }
+    }
+
+    @Override
+    public void addPanelToFrame(JPanel jPanel) {
+        add(jPanel);
+    }
+
+    @Override
+    public void setSizePanel(int x, int y, JPanel jPanel) {
+        setSize(x,y);
+        jPanel.setBounds(0,0,800,600);
+    }
+
+    @Override
+    public AdminPanel getAdminPanel() {
+        return adminPanel;
+    }
+
+    @Override
+    public ChangeDataPanel getChangeDataPanel() {
        return changeDataPanel;
+    }
+
+    @Override
+    public FlightMenuPanel getFlightMenuPanel() {
+        return flightMenuPanel;
+    }
+
+    @Override
+    public RegisterPanel getRegisterPanel(){
+        return regUser;
+    }
+
+    @Override
+    public LoginPanel getLoginPanel() {
+        return login;
     }
 
     @Override

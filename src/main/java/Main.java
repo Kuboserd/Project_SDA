@@ -11,6 +11,7 @@ public class Main {
         gui.registerComponent(new AssistantPanel());
         gui.registerComponent(new AdminPanel());
         gui.registerComponent(new ChangeDataPanel());
+        gui.registerComponent(new FlightMenuPanel());
         gui.createGui();
     }
 }

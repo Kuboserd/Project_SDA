@@ -15,23 +15,23 @@ import java.awt.event.KeyEvent;
 public class ChangeDataPanel extends JPanel implements Component {
     private JLabel firstNameJL = new JLabel("First name");
     private JTextField firstNameJTF = new JTextField();
-    private JButton acceptFirstNameJB = new JButton("Save name");
+    private JButton acceptFirstNameJB = new JButton("Save");
     private JLabel lastNameJL = new JLabel("Last name");
     private JTextField lastNameJTF = new JTextField();
-    private JButton acceptLastNameJB = new JButton("Save last name");
+    private JButton acceptLastNameJB = new JButton("Save");
     private JLabel emailJL = new JLabel("Email");
     private JLabel incorrectEmailJL = new JLabel("Invalid e-mail");
     private JTextField emailJTF = new JTextField();
-    private JButton acceptEmailJB = new JButton("Save email");
+    private JButton acceptEmailJB = new JButton("Save");
     private JLabel pswdJL = new JLabel("Password");
     private JPasswordField pswdJTF = new JPasswordField();
     private JLabel confirmPswdJL = new JLabel("Confirm password");
     private JPasswordField confirmPSWDJTF = new JPasswordField();
-    private JButton acceptPasswordJB = new JButton("Save PSWD");
+    private JButton acceptPasswordJB = new JButton("Save");
     private JLabel phoneJL = new JLabel("Phone number");
     private JLabel incorrectPhoneJL = new JLabel("Invalid phone number");
     private JTextField phoneJTF = new JTextField();
-    private JButton acceptPhoneJB = new JButton("Save Phone");
+    private JButton acceptPhoneJB = new JButton("Save");
     private Mediator mediator;
     private Account account;
 
@@ -82,7 +82,7 @@ public class ChangeDataPanel extends JPanel implements Component {
         confirmPswdJL.setBounds(30, 273, 120, 20);
         confirmPSWDJTF.setBounds(30, 292, 190, 28);
         acceptPasswordJB.setBounds(230, 292, 80, 25);
-        phoneJL.setBounds(30, 179, 150, 20);//TODO
+        phoneJL.setBounds(30, 179, 150, 20);
         incorrectPhoneJL.setBounds(140, 179, 150, 20);
         phoneJTF.setBounds(30, 198, 193, 28);
         acceptPhoneJB.setBounds(230, 198, 80, 25);

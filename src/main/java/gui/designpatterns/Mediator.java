@@ -1,7 +1,7 @@
 package gui.designpatterns;
 
 import entity.users.Account;
-import gui.panels.ChangeDataPanel;
+import gui.panels.*;
 
 import javax.swing.*;
 
@@ -10,9 +10,16 @@ public interface Mediator {
     void setAccount(Account account);
     Account getAccount();
     void choicePanel();
-    void offLogJpOnRegJp();
     void offPanelOnLoginPanel(JPanel jPanel);
-    void offRegJpOnLogJp();
-    ChangeDataPanel onChangeDataPanel();
+    void onPanel(JPanel jPanel);
+    void offPanel(JPanel jPanel);
+    void addPanelToFrame(JPanel jPanel);
+    void setSizePanel(int x, int y, JPanel jPanel);
+    LoginPanel getLoginPanel();
+    ChangeDataPanel getChangeDataPanel();
+    FlightMenuPanel getFlightMenuPanel();
+    RegisterPanel getRegisterPanel();
+    AdminPanel getAdminPanel();
+    void setAccountStrategy(String typeAccount);
 
 }
