@@ -1,9 +1,10 @@
 package entity.flight;
 
 
+import lombok.ToString;
+
 import javax.persistence.*;
 import java.util.List;
-
 @Entity
 @Table(name = "airports")
 public class Airport {
@@ -51,4 +52,15 @@ public class Airport {
     @Column(name = "city")
     private boolean isCity;
 
+    @Override
+    public String toString() {
+        return "Airport{" +
+                "name='" + name + '\'' +
+                ", cityCode='" + cityCode + '\'' +
+                ", cityName='" + cityName + '\'' +
+                ", countryName='" + countryName + '\'' +
+                ", countryCode='" + countryCode + '\'' +
+                ", timezone='" + timezone + '\'' +
+                '}';
+    }
 }

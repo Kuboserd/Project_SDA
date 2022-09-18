@@ -1,10 +1,13 @@
 package gui.panels;
 
+import entity.flight.Airport;
 import gui.designpatterns.Component;
 import gui.designpatterns.Mediator;
+import util.repository.Repository;
 
 import javax.swing.*;
 import java.awt.*;
+import java.util.List;
 
 public class FlightMenuPanel extends JPanel implements Component {
     private JButton loadFlight = new JButton("Load flights from docs");
@@ -24,6 +27,7 @@ public class FlightMenuPanel extends JPanel implements Component {
     public FlightMenuPanel() {
         setAllBounds();
         addAllToPanel();
+        addActionSearchFromButton();
         setLayout(null);
         setVisible(true);
     }
@@ -52,6 +56,14 @@ public class FlightMenuPanel extends JPanel implements Component {
         resultFlightFromJTA.setEditable(false);
         scrollResultFlightFromJSP.setBounds(330,50,400,100);
         scrollResultFlightFromJSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  ;
+    }
+
+    public void addActionSearchFromButton(){
+        searchFlightFromJB.addActionListener(e -> {
+            String searchAirports = flightFromJTF.getText();
+            List<Airport> airports = Repository.getByCityName(searchAirports);
+            resultFlightFromJTA.setText(airports.get(0).toString());
+        });
     }
 
     @Override
