@@ -41,7 +41,7 @@ public class AdminPanel extends JPanel implements Component {
     *   ustawić odpowiednio rejestracje*/
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
-            mediator.setSizePanel(350,550,this);
+            mediator.setSizePanel(350,480,this);
             mediator.offPanel(mediator.getFlightMenuPanel());
             registerPanel.setMediator(mediator);
             registerPanel.getBackJB().addActionListener(e1 -> mediator.offPanelOnLoginPanel(this));
@@ -54,7 +54,7 @@ public class AdminPanel extends JPanel implements Component {
     private void createFlightButton() {
         flightsJB.addActionListener(e -> {
             registerPanel.setVisible(false);
-            setSize(350,50);
+            setSize(330,40);
             mediator.setSizePanel(800,600,mediator.getFlightMenuPanel());
             mediator.addPanelToFrame(mediator.getFlightMenuPanel());
             mediator.onPanel(mediator.getFlightMenuPanel());

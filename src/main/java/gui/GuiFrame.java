@@ -40,7 +40,7 @@ public class GuiFrame extends JFrame implements Mediator {
             add(adminPanel);
             revalidate();
             adminPanel.setVisible(true);
-            setSize(350,550);
+            setSize(350,480);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
@@ -99,7 +99,7 @@ public class GuiFrame extends JFrame implements Mediator {
     @Override
     public void setSizePanel(int x, int y, JPanel jPanel) {
         setSize(x,y);
-        jPanel.setBounds(0,0,800,600);
+        jPanel.setBounds(0,0,x,y);
     }
 
     @Override

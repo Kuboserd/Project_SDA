@@ -9,23 +9,49 @@ import java.awt.*;
 public class FlightMenuPanel extends JPanel implements Component {
     private JButton loadFlight = new JButton("Load flights from docs");
     private JButton saveFlight = new JButton("Save flights");
-    private JButton createFlight = new JButton("Create flight");
+    private JLabel createFlight = new JLabel("Create flight");
+    private JLabel flightFromJL = new JLabel("Flight from - use city name");
+    private JTextField flightFromJTF = new JTextField();
+    private JButton searchFlightFromJB = new JButton("Search");
+    private JLabel flightToJL = new JLabel("Flight from - use city name");
+    private JTextField flightToJTF = new JTextField();
+    private JButton searchFlightToJB = new JButton("Search");
+    private JTextArea resultFlightFromJTA = new JTextArea(15,20);
+    private JScrollPane scrollResultFlightFromJSP = new JScrollPane(resultFlightFromJTA);
+    private JTextArea resultFlightToJTA = new JTextArea();
     private Mediator mediator;
 
     public FlightMenuPanel() {
-        setBackground(Color.BLACK);
         setAllBounds();
-        add(loadFlight);
-        add(saveFlight);
-        add(createFlight);
+        addAllToPanel();
         setLayout(null);
         setVisible(true);
     }
 
-    public void setAllBounds(){
-        loadFlight.setBounds(10,70,120,25);
-        saveFlight.setBounds(140,70,120,25);
-        createFlight.setBounds(570,70,120,25);
+    private void addAllToPanel(){
+        add(loadFlight);
+        add(saveFlight);
+        add(createFlight);
+        add(flightFromJL);
+        add(flightFromJTF);
+        add(flightToJL);
+        add(flightToJTF);
+        add(searchFlightFromJB);
+        add(searchFlightToJB);
+        add(scrollResultFlightFromJSP);
+        add(resultFlightToJTA);
+    }
+
+    private void setAllBounds(){
+        loadFlight.setBounds(400,530,120,25);
+        saveFlight.setBounds(530,530,120,25);
+        createFlight.setBounds(120,40,120,25);
+        flightFromJL.setBounds(20,70,150,25);
+        flightFromJTF.setBounds(20,90,150,25);
+        searchFlightFromJB.setBounds(190,90,120,25);
+        resultFlightFromJTA.setEditable(false);
+        scrollResultFlightFromJSP.setBounds(330,50,400,100);
+        scrollResultFlightFromJSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  ;
     }
 
     @Override
