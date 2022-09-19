@@ -60,7 +60,6 @@ public class Airport {
                 ", cityName='" + cityName + '\'' +
                 ", countryName='" + countryName + '\'' +
                 ", countryCode='" + countryCode + '\'' +
-                ", timezone='" + timezone + '\'' +
-                '}';
+                "}\n";
     }
 }
