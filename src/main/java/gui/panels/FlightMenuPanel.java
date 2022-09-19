@@ -6,28 +6,29 @@ import gui.designpatterns.Mediator;
 import util.repository.Repository;
 
 import javax.swing.*;
-import java.awt.*;
 import java.util.List;
 
 public class FlightMenuPanel extends JPanel implements Component {
     private JButton loadFlight = new JButton("Load flights from docs");
     private JButton saveFlight = new JButton("Save flights");
     private JLabel createFlight = new JLabel("Create flight");
-    private JLabel flightFromJL = new JLabel("Flight from - use city name");
-    private JTextField flightFromJTF = new JTextField();
-    private JButton searchFlightFromJB = new JButton("Search");
-    private JLabel flightToJL = new JLabel("Flight from - use city name");
-    private JTextField flightToJTF = new JTextField();
-    private JButton searchFlightToJB = new JButton("Search");
-    private JTextArea resultFlightFromJTA = new JTextArea(15,20);
-    private JScrollPane scrollResultFlightFromJSP = new JScrollPane(resultFlightFromJTA);
-    private JTextArea resultFlightToJTA = new JTextArea();
+    private JLabel airportFromJL = new JLabel("Airport from by city name");
+    private JTextField airportFromJTF = new JTextField();
+    private JButton searchAirportFromJB = new JButton("Search");
+    private JLabel airportToJL = new JLabel("Airport from by city name");
+    private JTextField airportToJTF = new JTextField();
+    private JButton searchAirportToJB = new JButton("Search");
+    private JTextArea resultAirportFromJTA = new JTextArea(15,20);
+    private JScrollPane scrollResultAirportFromJSP = new JScrollPane(resultAirportFromJTA);
+    private JTextArea resultAirportToJTA = new JTextArea(10,15);
+    private JScrollPane scrollResultAirportToJSP = new JScrollPane(resultAirportToJTA);
     private Mediator mediator;
 
     public FlightMenuPanel() {
         setAllBounds();
         addAllToPanel();
-        addActionSearchFromButton();
+        createResultFrom();
+        createResultTo();
         setLayout(null);
         setVisible(true);
     }
@@ -36,33 +37,49 @@ public class FlightMenuPanel extends JPanel implements Component {
         add(loadFlight);
         add(saveFlight);
         add(createFlight);
-        add(flightFromJL);
-        add(flightFromJTF);
-        add(flightToJL);
-        add(flightToJTF);
-        add(searchFlightFromJB);
-        add(searchFlightToJB);
-        add(scrollResultFlightFromJSP);
-        add(resultFlightToJTA);
+        add(airportFromJL);
+        add(airportFromJTF);
+        add(airportToJL);
+        add(airportToJTF);
+        add(searchAirportFromJB);
+        add(searchAirportToJB);
+        add(scrollResultAirportFromJSP);
+        add(scrollResultAirportToJSP);
+        //add(resultFlightFromJTA);
+        //dadd(resultFlightToJTA);
     }
 
     private void setAllBounds(){
         loadFlight.setBounds(400,530,120,25);
         saveFlight.setBounds(530,530,120,25);
         createFlight.setBounds(120,40,120,25);
-        flightFromJL.setBounds(20,70,150,25);
-        flightFromJTF.setBounds(20,90,150,25);
-        searchFlightFromJB.setBounds(190,90,120,25);
-        resultFlightFromJTA.setEditable(false);
-        scrollResultFlightFromJSP.setBounds(330,50,400,100);
-        scrollResultFlightFromJSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);  ;
+        airportFromJL.setBounds(20,70,150,25);
+        airportFromJTF.setBounds(20,90,150,25);
+        searchAirportFromJB.setBounds(190,90,120,25);
+        airportToJL.setBounds(20,200,150,25);
+        airportToJTF.setBounds(20,230,150,25);
+        searchAirportToJB.setBounds(190,230,120,25);
     }
 
-    public void addActionSearchFromButton(){
-        searchFlightFromJB.addActionListener(e -> {
-            String searchAirports = flightFromJTF.getText();
+    private void createResultFrom(){
+        resultAirportFromJTA.setEditable(false);
+        scrollResultAirportFromJSP.setBounds(330,20,450,100);
+        scrollResultAirportFromJSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        searchAirportFromJB.addActionListener(e -> {
+            String searchAirports = airportFromJTF.getText();
             List<Airport> airports = Repository.getByCityName(searchAirports);
-            resultFlightFromJTA.setText(airports.get(0).toString());
+            resultAirportFromJTA.setText(airports.toString());
+        });
+    }
+
+    private void createResultTo(){
+        resultAirportToJTA.setEditable(false);
+        scrollResultAirportToJSP.setBounds(330,160,450,100);
+        scrollResultAirportToJSP.setHorizontalScrollBarPolicy(JScrollPane.HORIZONTAL_SCROLLBAR_ALWAYS);
+        searchAirportToJB.addActionListener(e -> {
+            String searchAirports = airportToJTF.getText();
+            List<Airport> airports = Repository.getByCityName(searchAirports);
+            resultAirportToJTA.setText(airports.toString());
         });
     }
 
