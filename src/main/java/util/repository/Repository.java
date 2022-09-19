@@ -1,5 +1,6 @@
 package util.repository;
 
+import entity.flight.Plane;
 import gui.MenuException;
 import entity.flight.Airport;
 import entity.tickets.Ticket;
@@ -54,6 +55,12 @@ public class Repository {
     public static List<Airport> getByCityName(String cityName){
         return entityManager.createQuery("FROM Airport a WHERE a.cityName =: cityName", Airport.class)
                 .setParameter("cityName", cityName)
+                .getResultList();
+    }
+
+    public static List<Plane> getByName(String name){
+        return entityManager.createQuery("FROM Plane p WHERE p.name =: name", Plane.class)
+                .setParameter("name", name)
                 .getResultList();
     }
 

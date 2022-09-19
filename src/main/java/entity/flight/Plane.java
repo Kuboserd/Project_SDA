@@ -23,4 +23,13 @@ public class Plane {
 
     @Column(name = "year_of_production")
     private LocalDate yearOfProduction;
+
+    @Override
+    public String toString() {
+        return "Plane{" +
+                "name='" + name + '\'' +
+                ", model='" + model + '\'' +
+                ", yearOfProduction=" + yearOfProduction +
+                "}\n";
+    }
 }
