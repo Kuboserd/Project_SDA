@@ -1,12 +1,14 @@
 package entity.flight;
 
 import entity.tickets.Ticket;
+import lombok.Setter;
 
 import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity
+@Setter
 @Table(name = "flights")
 public class Flight {
 
@@ -53,5 +55,16 @@ public class Flight {
 
     public LocalDateTime getArrivalTime() {
         return arrivalTime;
+    }
+
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "startAirport=" + startAirport +
+                ", endAirport=" + endAirport +
+                ", plane=" + plane +
+                ", departureTime=" + departureTime +
+                ", arrivalTime=" + arrivalTime +
+                '}';
     }
 }

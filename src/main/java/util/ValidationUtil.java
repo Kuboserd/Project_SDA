@@ -12,6 +12,10 @@ public class ValidationUtil {
     public static boolean isValidPhoneNumber(String phone) {
         Pattern p = Pattern.compile("\\d{2}\\d{9}");
         return p.matcher(phone).find();
+    }
 
+    public static boolean isValidLocalDataTime(String data){
+        Pattern p = Pattern.compile("\\d{4}-\\d{2}-\\d{2}\\s\\d{2}:\\d{2}");
+        return p.matcher(data).matches();
     }
 }
