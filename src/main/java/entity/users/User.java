@@ -1,9 +1,9 @@
-package users;
+package entity.users;
 
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
-import tickets.Ticket;
+import entity.tickets.Ticket;
 
 import javax.persistence.*;
 import java.util.List;

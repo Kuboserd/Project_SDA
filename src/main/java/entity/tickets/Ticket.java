@@ -1,14 +1,13 @@
-package tickets;
+package entity.tickets;
 
-import flight.Flight;
-import users.User;
+import entity.flight.Flight;
+import entity.users.User;
 
 import javax.persistence.*;
 
 @Entity
 @Table(name = "tickets")
 public class Ticket {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
@@ -31,6 +30,31 @@ public class Ticket {
     @Column(name = "clearance_priority")
     private boolean clearancePriority;
 
+    public Ticket() {
+    }
 
+    public Ticket(User user, float price) {
+        this.user = user;
+        this.price = price;
+    }
 
+    public User getUser() {
+        return user;
+    }
+
+    public Flight getFlight() {
+        return flight;
+    }
+
+    public float getPrice() {
+        return price;
+    }
+
+    public LuggageType getLuggageType() {
+        return luggageType;
+    }
+
+    public boolean isClearancePriority() {
+        return clearancePriority;
+    }
 }

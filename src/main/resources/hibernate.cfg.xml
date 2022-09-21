@@ -20,14 +20,14 @@
         <property name="hibernate.hbm2ddl.auto">update</property>
 
         <!--    Mappings-->
-        <mapping class="users.Account"/>
-        <mapping class="users.User"/>
-        <mapping class="users.Admin"/>
-        <mapping class="users.ServiceAssistant"/>
-        <mapping class="tickets.Ticket"/>
-        <mapping class="flight.Plane"/>
-        <mapping class="flight.Airport"/>
-        <mapping class="flight.Flight"/>
+        <mapping class="entity.users.Account"/>
+        <mapping class="entity.users.User"/>
+        <mapping class="entity.users.Admin"/>
+        <mapping class="entity.users.ServiceAssistant"/>
+        <mapping class="entity.tickets.Ticket"/>
+        <mapping class="entity.flight.Plane"/>
+        <mapping class="entity.flight.Airport"/>
+        <mapping class="entity.flight.Flight"/>
 
     </session-factory>
 
