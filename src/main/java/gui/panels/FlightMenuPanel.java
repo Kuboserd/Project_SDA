@@ -9,6 +9,7 @@ import util.ValidationUtil;
 import util.repository.Repository;
 
 import javax.swing.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -53,6 +54,9 @@ public class FlightMenuPanel extends JPanel implements Component {
         addActionSaveDepTimeButton();
         addActionSaveArrTimeButton();
         addActionSaveAirportFromButton();
+        addActionSaveAirportToButton();
+        addActionSavePlaneButton();
+        addActionSaveFlightButton();
         setLayout(null);
         setVisible(true);
     }
@@ -114,6 +118,8 @@ public class FlightMenuPanel extends JPanel implements Component {
     private void createResultAirportFrom(){
         resultAirportFromJTA.setEditable(false);
         searchAirportFromJB.addActionListener(e -> {
+            resultAirportFromJTA.selectAll();
+            resultAirportFromJTA.replaceSelection("");
             String searchAirports = airportFromJTF.getText();
             List<Airport> airports = Repository.getByCityName(searchAirports);
             airports.forEach(airport -> resultAirportFromJTA.append(airport.toString()));
@@ -123,6 +129,8 @@ public class FlightMenuPanel extends JPanel implements Component {
     private void createResultAirportTo(){
         resultAirportToJTA.setEditable(false);
         searchAirportToJB.addActionListener(e -> {
+            resultAirportToJTA.selectAll();
+            resultAirportToJTA.replaceSelection("");
             String searchAirports = airportToJTF.getText();
             List<Airport> airports = Repository.getByCityName(searchAirports);
             airports.forEach(airport -> resultAirportToJTA.append(airport.toString()));
@@ -132,6 +140,8 @@ public class FlightMenuPanel extends JPanel implements Component {
     private void createResultPlane(){
         resultPlanesJTA.setEditable(false);
         searchPlanesJB.addActionListener(e -> {
+            resultPlanesJTA.selectAll();
+            resultPlanesJTA.replaceSelection("");
             String searchPlanes = planesByNameJTF.getText();
             List<Plane> planes = Repository.getByName(searchPlanes);
             planes.forEach(plane -> resultPlanesJTA.append(plane.toString()));
@@ -147,7 +157,6 @@ public class FlightMenuPanel extends JPanel implements Component {
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid date");
             }
-            System.out.println(flight);
         });
     }
 
@@ -156,20 +165,55 @@ public class FlightMenuPanel extends JPanel implements Component {
             if(ValidationUtil.isValidLocalDataTime(arrivalTimeJTF.getText())){
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime localDateTime = LocalDateTime.parse(arrivalTimeJTF.getText(), formatter);
-                flight.setDepartureTime(localDateTime);
+                flight.setArrivalTime(localDateTime);
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid date");
             }
-            System.out.println(flight);
         });
     }
 
-    public void addActionSaveAirportFromButton(){
+    private void addActionSaveAirportFromButton(){
         saveAirportFromJB.addActionListener(e -> {
-            //TODO - zrobić wybranie nazwy airport z string
-            String aiport = resultAirportFromJTA.getSelectedText();
-            //System.out.println(i);
+            String[] airportTab = resultAirportFromJTA.getSelectedText().split("\\w+: ");
+            String airportName = airportTab[1].split(",")[0];
+            flight.setStartAirport(Repository.getAirportByName(airportName));
         });
+    }
+
+    private void addActionSaveAirportToButton(){
+        saveAirportToJB.addActionListener(e -> {
+            String[] airportTab = resultAirportToJTA.getSelectedText().split("\\w+: ");
+            String airportName = airportTab[1].split(",")[0];
+            flight.setEndAirport(Repository.getAirportByName(airportName));
+        });
+    }
+
+    private void addActionSavePlaneButton(){
+        savePlaneJB.addActionListener(e -> {
+            String[] planeTab = resultPlanesJTA.getSelectedText().split("\\w+: ");
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+            LocalDate yearOfProduction = LocalDate.parse(planeTab[3], formatter);
+            flight.setPlane(Repository.getPlaneByDate(yearOfProduction));
+        });
+    }
+
+    private void addActionSaveFlightButton(){
+        saveFlight.addActionListener(e -> {
+            System.out.println(flight);
+            if(isValidFlight()){
+                Repository.addFlight(flight);
+            } else {
+                JOptionPane.showMessageDialog(null, "Invalid flight");
+            }
+        });
+    }
+
+    private boolean isValidFlight(){
+        return flight.getArrivalTime() != null
+                && flight.getDepartureTime() != null
+                && flight.getEndAirport() != null
+                && flight.getStartAirport() != null
+                && flight.getPlane() != null;
     }
 
     @Override

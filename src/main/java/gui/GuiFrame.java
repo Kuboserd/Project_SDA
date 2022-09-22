@@ -52,8 +52,10 @@ public class GuiFrame extends JFrame implements Mediator {
             add(user);
             revalidate();
             user.setVisible(true);
-            setSize(350,550);
+            setSize(350,510);
         }
+        setResizable(true);
+        setLocationRelativeTo(null);
     }
 
     @Override
@@ -82,10 +84,6 @@ public class GuiFrame extends JFrame implements Mediator {
     @Override
     public void offPanel(JPanel jPanel){
         remove(jPanel);
-        setResizable(true);
-        setLocationRelativeTo(null);
-        revalidate();
-        revalidate();
     }
 
     @Override
