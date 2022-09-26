@@ -16,10 +16,11 @@ public class GuiFrame extends JFrame implements Mediator {
     private RegisterPanel regUser;
     private AdminPanel adminPanel;
     private JPanel assistant;
-    private JPanel user;
     private ChangeDataPanel changeDataPanel;
     private FlightMenuPanel flightMenuPanel;
     private AccountStrategy accountStrategy;
+    private UserMenuTabbed userMenuTabbed;
+    private FundWalletPanel fundWalletPanel;
 
     @Override
     public void registerComponent(Component component) {
@@ -27,11 +28,12 @@ public class GuiFrame extends JFrame implements Mediator {
         switch (component.getName()) {
             case "loginPanel" -> login = (LoginPanel) component;
             case "regPanel" -> regUser = (RegisterPanel) component;
-            case "userPanel" -> user = (JPanel) component;
+            case "userMenuTab" -> userMenuTabbed = (UserMenuTabbed) component;
             case "assistantPanel" -> assistant = (JPanel) component;
             case "adminPanel" -> adminPanel = (AdminPanel) component;
             case "changeDataPanel" -> changeDataPanel = (ChangeDataPanel) component;
             case "flightMenuPanel" -> flightMenuPanel = (FlightMenuPanel) component;
+            case "fundWallet" -> fundWalletPanel = (FundWalletPanel) component;
         }
     }
 
@@ -51,10 +53,13 @@ public class GuiFrame extends JFrame implements Mediator {
             setSize(480, 130);
         } else if (account.getClass().equals(User.class)) {
             remove(login);
-            add(user);
+            userMenuTabbed.getWelcomeJL().setText("Welcome: " + account.getName());
+            fundWalletPanel.setUser((User) account);
+            fundWalletPanel.getCashJL().setText("Cash: " + fundWalletPanel.getUser().getBalance());
+            add(userMenuTabbed);
             revalidate();
-            user.setVisible(true);
-            setSize(350, 170);
+            userMenuTabbed.setVisible(true);
+            setSize(500, 500);
         }
         setResizable(true);
         setLocationRelativeTo(null);
@@ -158,6 +163,11 @@ public class GuiFrame extends JFrame implements Mediator {
     @Override
     public Account getAccount() {
         return account;
+    }
+
+    @Override
+    public FundWalletPanel getFundWalletPanel() {
+        return fundWalletPanel;
     }
 
     public void createGui() {

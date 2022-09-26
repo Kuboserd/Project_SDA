@@ -12,7 +12,6 @@ public class UserMenuPanel extends JPanel implements Component {
     private JButton yourTicket = new JButton("Your ticket");
     private JButton contactAssistant = new JButton("Contact with Assistant");
     private JButton backJB = new JButton("Back");
-    private ChangeDataPanel changeDataPanel;
     private Mediator mediator;
 
     public UserMenuPanel() {
@@ -47,10 +46,7 @@ public class UserMenuPanel extends JPanel implements Component {
             mediator.setBoundsPanel(mediator.getChangeDataPanel());
             mediator.onPanel(mediator.getChangeDataPanel());
             mediator.setSizeFrame(350,530);
-            //changeDataPanel = mediator.getChangeDataPanel();
-            //add(changeDataPanel);
-            //changeDataPanel.setAccount(mediator.getAccount());
-            //changeDataPanel.setBounds(0,110,350,330);
+
         });
     }
 
