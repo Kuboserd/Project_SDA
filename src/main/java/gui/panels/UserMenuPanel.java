@@ -39,15 +39,18 @@ public class UserMenuPanel extends JPanel implements Component {
         fundWallet.setBounds(20, 50, 140, 25);
         yourTicket.setBounds(170, 50, 140, 25);
         contactAssistant.setBounds(70, 80, 200, 25);
-        backJB.setBounds(260,440,70,25);
+        backJB.setBounds(260,110,70,25);
     }
 
     private void addActionChangeDate() {
         changeData.addActionListener(e -> {
-            changeDataPanel = mediator.getChangeDataPanel();
-            add(changeDataPanel);
-            changeDataPanel.setAccount(mediator.getAccount());
-            changeDataPanel.setBounds(0,110,350,330);
+            mediator.setBoundsPanel(mediator.getChangeDataPanel());
+            mediator.onPanel(mediator.getChangeDataPanel());
+            mediator.setSizeFrame(350,530);
+            //changeDataPanel = mediator.getChangeDataPanel();
+            //add(changeDataPanel);
+            //changeDataPanel.setAccount(mediator.getAccount());
+            //changeDataPanel.setBounds(0,110,350,330);
         });
     }
 
@@ -57,7 +60,11 @@ public class UserMenuPanel extends JPanel implements Component {
     *   opcjonalnie wyczyszczenie JTF w menu*/
     private void addActionBackButton(){
         backJB.addActionListener(e -> {
-            mediator.offPanelOnLoginPanel(this);
+            backJB.setVisible(false);
+            mediator.offPanel(this);
+            mediator.offPanel(mediator.getChangeDataPanel());
+            mediator.setSizeFrame(350,200);
+            mediator.onPanel(mediator.getLoginPanel());
         });
     }
 

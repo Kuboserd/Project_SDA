@@ -32,7 +32,6 @@ public class RegisterPanel extends JPanel implements Component {
     private JButton backJB = new JButton("Back");
     private Mediator mediator;
     private Account account;
-    private AccountStrategy accountStrategy;
     private boolean emailValid = false;
     private boolean phoneValid = false;
 
@@ -68,23 +67,23 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     private void setAllBounds() {
-        info.setBounds(90, 0, 150, 35);
-        firstNameJL.setBounds(70, 38, 70, 20);
-        firstNameJTF.setBounds(70, 57, 193, 28);
-        lastNameJL.setBounds(70, 85, 70, 20);
-        lastNameJTF.setBounds(70, 104, 193, 28);
-        emailJL.setBounds(70, 132, 70, 20);
-        incorrectEmailJL.setBounds(170, 132, 100, 20);
-        emailJTF.setBounds(70, 151, 193, 28);
-        pswdJL.setBounds(70, 226, 70, 20);
-        pswdJTF.setBounds(70, 245, 190, 28);
-        confirmPswdJL.setBounds(70, 273, 120, 20);
-        confirmPSWDJTF.setBounds(70, 292, 190, 28);
-        phoneJL.setBounds(70, 179, 150, 20);
-        incorrectPhoneJL.setBounds(170, 179, 150, 20);
-        phoneJTF.setBounds(70, 198, 193, 28);
-        reg.setBounds(70, 350, 90, 25);
-        backJB.setBounds(170, 350, 90, 25);
+        info.setBounds(90, 30, 150, 35);
+        firstNameJL.setBounds(70, 68, 70, 20);
+        firstNameJTF.setBounds(70, 87, 193, 28);
+        lastNameJL.setBounds(70, 115, 70, 20);
+        lastNameJTF.setBounds(70, 134, 193, 28);
+        emailJL.setBounds(70, 162, 70, 20);
+        incorrectEmailJL.setBounds(170, 162, 100, 20);
+        emailJTF.setBounds(70, 181, 193, 28);
+        pswdJL.setBounds(70, 256, 70, 20);
+        pswdJTF.setBounds(70, 275, 190, 28);
+        confirmPswdJL.setBounds(70, 303, 120, 20);
+        confirmPSWDJTF.setBounds(70, 322, 190, 28);
+        phoneJL.setBounds(70, 209, 150, 20);
+        incorrectPhoneJL.setBounds(170, 209, 150, 20);
+        phoneJTF.setBounds(70, 228, 193, 28);
+        reg.setBounds(70, 380, 90, 25);
+        backJB.setBounds(170, 380, 90, 25);
     }
 
     private void addKeyLisToEmailJTF() {
@@ -122,7 +121,7 @@ public class RegisterPanel extends JPanel implements Component {
     }
 
     private void setDateToAccount() {
-        account = accountStrategy.setAccountRegister();
+        account = mediator.getAccountStrategy();
         account.setName(firstNameJTF.getText());
         account.setSurname(lastNameJTF.getText());
         account.setEmail(emailJTF.getText());
@@ -152,22 +151,14 @@ public class RegisterPanel extends JPanel implements Component {
                 && emailValid;
     }
 
+    //TODO
     private void addActionBackButton() {
         backJB.setForeground(Color.WHITE);
         backJB.setBackground(Color.BLACK);
-        backJB.addActionListener(e -> {
-            mediator.setSizePanel(350, 200, mediator.getLoginPanel());
-            mediator.offPanelOnLoginPanel(this);
-            mediator.onPanel(mediator.getLoginPanel());
-        });
     }
 
     public JButton getBackJB() {
         return backJB;
-    }
-
-    public void setAccountStrategy(AccountStrategy accountStrategy) {
-        this.accountStrategy = accountStrategy;
     }
 
     public JLabel getInfoJL() {

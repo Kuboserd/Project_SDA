@@ -6,6 +6,7 @@ import entity.users.ServiceAssistant;
 import entity.users.User;
 import gui.designpatterns.*;
 import gui.panels.*;
+import gui.panels.AdminPanel;
 
 import javax.swing.*;
 
@@ -18,6 +19,8 @@ public class GuiFrame extends JFrame implements Mediator {
     private JPanel user;
     private ChangeDataPanel changeDataPanel;
     private FlightMenuPanel flightMenuPanel;
+    private AccountStrategy accountStrategy;
+
     @Override
     public void registerComponent(Component component) {
         component.setMediator(this);
@@ -34,40 +37,27 @@ public class GuiFrame extends JFrame implements Mediator {
 
     @Override
     public void choicePanel() {
-        if(account.getClass().equals(Admin.class)){
+        if (account.getClass().equals(Admin.class)) {
             remove(login);
-            adminPanel.setAccountStrategy(new AssistantRegister());
             add(adminPanel);
             revalidate();
             adminPanel.setVisible(true);
-            setSize(350,480);
+            setSize(350, 480);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
             revalidate();
             assistant.setVisible(true);
-            setSize(480,400);
+            setSize(480, 130);
         } else if (account.getClass().equals(User.class)) {
             remove(login);
             add(user);
             revalidate();
             user.setVisible(true);
-            setSize(350,550);
+            setSize(350, 170);
         }
-    }
-
-    @Override
-    public void setAccount(Account account) {
-        this.account = account;
-    }
-
-    @Override
-    public void offPanelOnLoginPanel(JPanel jPanel) {
-        remove(jPanel);
-        add(login);
-        revalidate();
-        login.setVisible(true);
-        setSize(350,200);
+        setResizable(true);
+        setLocationRelativeTo(null);
     }
 
     @Override
@@ -80,31 +70,64 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void offPanel(JPanel jPanel){
+    public void offPanel(JPanel jPanel) {
         remove(jPanel);
-        setResizable(true);
-        setLocationRelativeTo(null);
-        revalidate();
-        revalidate();
     }
 
     @Override
-    public void setAccountStrategy(String typeAccount){
-        switch (typeAccount){
-            case "user" -> regUser.setAccountStrategy(new UserRegister());
-            case "assistant" -> regUser.setAccountStrategy(new AssistantRegister());
+    public void setAccount(Account account) {
+        this.account = account;
+    }
+
+    @Override
+    public void setAccountType(String typeAccount) {
+        switch (typeAccount) {
+            case "user" -> setAccountStrategy(new User());
+            case "assistant" -> setAccountStrategy(new ServiceAssistant());
         }
     }
 
+
     @Override
-    public void addPanelToFrame(JPanel jPanel) {
-        add(jPanel);
+    public void setSizeFrame(int x, int y) {
+        setSize(x, y);
     }
 
     @Override
-    public void setSizePanel(int x, int y, JPanel jPanel) {
-        setSize(x,y);
-        jPanel.setBounds(0,0,x,y);
+    public void setBoundsPanel(JPanel jPanel) {
+        jPanel.setBounds(0,170,350,330);
+    }
+
+    @Override
+    public void setBackAndInfoRegPanel(String panel) {
+        switch (panel) {
+            case "login" -> {
+                regUser.getBackJB().addActionListener(e -> {
+                    setSize(350, 200);
+                    offPanel(regUser);
+                    onPanel(login);
+                });
+                regUser.getInfoJL().setText("Register user");
+            }
+            case "admin" -> {
+                regUser.getBackJB().addActionListener(e -> {
+                    setSize(350, 200);
+                    offPanel(regUser);
+                    offPanel(adminPanel);
+                    onPanel(login);
+                });
+                regUser.getInfoJL().setText("Register service assistant");
+            }
+        }
+    }
+
+    private void setAccountStrategy(AccountStrategy accountStrategy) {
+        this.accountStrategy = accountStrategy;
+    }
+
+    @Override
+    public Account getAccountStrategy() {
+        return accountStrategy.setAccountRegister();
     }
 
     @Override
@@ -114,7 +137,7 @@ public class GuiFrame extends JFrame implements Mediator {
 
     @Override
     public ChangeDataPanel getChangeDataPanel() {
-       return changeDataPanel;
+        return changeDataPanel;
     }
 
     @Override
@@ -123,7 +146,7 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public RegisterPanel getRegisterPanel(){
+    public RegisterPanel getRegisterPanel() {
         return regUser;
     }
 
