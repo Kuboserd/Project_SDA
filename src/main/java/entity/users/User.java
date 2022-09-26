@@ -1,5 +1,6 @@
 package entity.users;
 
+import gui.designpatterns.AccountStrategy;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -14,7 +15,7 @@ import java.util.List;
 
 @Entity
 @DiscriminatorValue("user")
-public class User extends Account {
+public class User extends Account implements AccountStrategy {
 
     private double balance;
 
@@ -31,6 +32,11 @@ public class User extends Account {
     }
 
     public User() {
+    }
+
+    @Override
+    public Account setAccountRegister() {
+        return this;
     }
     /*Metody*/
 
