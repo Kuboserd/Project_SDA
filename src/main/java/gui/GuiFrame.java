@@ -9,8 +9,6 @@ import gui.panels.*;
 import gui.panels.AdminPanel;
 
 import javax.swing.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 public class GuiFrame extends JFrame implements Mediator {
     private Account account;
@@ -50,25 +48,16 @@ public class GuiFrame extends JFrame implements Mediator {
             add(assistant);
             revalidate();
             assistant.setVisible(true);
-            setSize(480, 400);
+            setSize(480, 130);
         } else if (account.getClass().equals(User.class)) {
             remove(login);
             add(user);
             revalidate();
             user.setVisible(true);
-            setSize(350, 510);
+            setSize(350, 170);
         }
         setResizable(true);
         setLocationRelativeTo(null);
-    }
-
-    @Override
-    public void offPanelOnLoginPanel(JPanel jPanel) {
-        remove(jPanel);
-        add(login);
-        revalidate();
-        login.setVisible(true);
-        setSize(350, 200);
     }
 
     @Override
@@ -91,16 +80,22 @@ public class GuiFrame extends JFrame implements Mediator {
     }
 
     @Override
-    public void setAccount(String typeAccount) {
+    public void setAccountType(String typeAccount) {
         switch (typeAccount) {
             case "user" -> setAccountStrategy(new User());
             case "assistant" -> setAccountStrategy(new ServiceAssistant());
         }
     }
 
+
     @Override
     public void setSizeFrame(int x, int y) {
         setSize(x, y);
+    }
+
+    @Override
+    public void setBoundsPanel(JPanel jPanel) {
+        jPanel.setBounds(0,170,350,330);
     }
 
     @Override

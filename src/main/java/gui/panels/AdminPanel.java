@@ -37,6 +37,7 @@ public class AdminPanel extends JPanel implements Component {
         regAssistantJB.addActionListener(e -> {
             setSize(330,40);
             mediator.setSizeFrame(350,480);
+            mediator.setAccountType("assistant");
             mediator.setBackAndInfoRegPanel("admin");
             mediator.offPanel(mediator.getFlightMenuPanel());
             mediator.onPanel(mediator.getRegisterPanel());
