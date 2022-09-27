@@ -30,9 +30,6 @@ public class AdminPanel extends JPanel implements Component {
         regAssistantJB.setBounds(170, 10, 140, 25);
     }
 
-    /*TODO
-    *  usunąć zmienną registerPanel - zastąpić mediatorem
-    *   ustawić odpowiednio rejestracje*/
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
             setSize(330,40);

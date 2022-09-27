@@ -55,7 +55,8 @@ public class GuiFrame extends JFrame implements Mediator {
             remove(login);
             userMenuTabbed.getWelcomeJL().setText("Welcome: " + account.getName());
             fundWalletPanel.setUser((User) account);
-            fundWalletPanel.getCashJL().setText("Cash: " + fundWalletPanel.getUser().getBalance());
+            fundWalletPanel.getCashJL().setText("Cash user: " + fundWalletPanel.getUser().getBalance());
+            changeDataPanel.setAccount(account);
             add(userMenuTabbed);
             revalidate();
             userMenuTabbed.setVisible(true);
@@ -91,7 +92,6 @@ public class GuiFrame extends JFrame implements Mediator {
             case "assistant" -> setAccountStrategy(new ServiceAssistant());
         }
     }
-
 
     @Override
     public void setSizeFrame(int x, int y) {

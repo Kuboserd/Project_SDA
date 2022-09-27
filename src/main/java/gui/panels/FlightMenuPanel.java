@@ -21,7 +21,7 @@ public class FlightMenuPanel extends JPanel implements Component {
     private JLabel airportFromJL = new JLabel("Airport from by city name");
     private JTextField airportFromJTF = new JTextField();
     private JButton searchAirportFromJB = new JButton("Search");
-    private JLabel airportToJL = new JLabel("Airport from by city name");
+    private JLabel airportToJL = new JLabel("Airport to by city name");
     private JTextField airportToJTF = new JTextField();
     private JButton searchAirportToJB = new JButton("Search");
     private JTextArea resultAirportFromJTA = new JTextArea(10,15);
@@ -42,6 +42,8 @@ public class FlightMenuPanel extends JPanel implements Component {
     private JButton saveAirportFromJB = new JButton("Save");
     private JButton saveAirportToJB = new JButton("Save");
     private JButton savePlaneJB = new JButton("Save");
+    private JTextArea flightJTA = new JTextArea(10,1);
+    private JScrollPane flightJSP = new JScrollPane(flightJTA);
     private Flight flight = new Flight();
     private Mediator mediator;
 
@@ -86,6 +88,8 @@ public class FlightMenuPanel extends JPanel implements Component {
         add(saveAirportFromJB);
         add(saveAirportToJB);
         add(savePlaneJB);
+        flightJTA.setEditable(false);
+        add(flightJSP);
     }
 
     private void setAllBounds(){
@@ -113,6 +117,7 @@ public class FlightMenuPanel extends JPanel implements Component {
         arrivalTimeJL.setBounds(20,480,120,25);
         arrivalTimeJTF.setBounds(20,500,120,25);
         saveArrivalTimeJB.setBounds(160,500,100,25);
+        flightJSP.setBounds(330, 450, 450,70);
     }
 
     private void createResultAirportFrom(){
@@ -154,6 +159,9 @@ public class FlightMenuPanel extends JPanel implements Component {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime localDateTime = LocalDateTime.parse(departureTimeJTF.getText(), formatter);
                 flight.setDepartureTime(localDateTime);
+                flightJTA.selectAll();
+                flightJTA.replaceSelection("");
+                flightJTA.append(flight.toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid date");
             }
@@ -166,6 +174,9 @@ public class FlightMenuPanel extends JPanel implements Component {
                 DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
                 LocalDateTime localDateTime = LocalDateTime.parse(arrivalTimeJTF.getText(), formatter);
                 flight.setArrivalTime(localDateTime);
+                flightJTA.selectAll();
+                flightJTA.replaceSelection("");
+                flightJTA.append(flight.toString());
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid date");
             }
@@ -177,6 +188,9 @@ public class FlightMenuPanel extends JPanel implements Component {
             String[] airportTab = resultAirportFromJTA.getSelectedText().split("\\w+: ");
             String airportName = airportTab[1].split(",")[0];
             flight.setStartAirport(Repository.getAirportByName(airportName));
+            flightJTA.selectAll();
+            flightJTA.replaceSelection("");
+            flightJTA.append(flight.toString());
         });
     }
 
@@ -185,6 +199,9 @@ public class FlightMenuPanel extends JPanel implements Component {
             String[] airportTab = resultAirportToJTA.getSelectedText().split("\\w+: ");
             String airportName = airportTab[1].split(",")[0];
             flight.setEndAirport(Repository.getAirportByName(airportName));
+            flightJTA.selectAll();
+            flightJTA.replaceSelection("");
+            flightJTA.append(flight.toString());
         });
     }
 
@@ -194,6 +211,9 @@ public class FlightMenuPanel extends JPanel implements Component {
             DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
             LocalDate yearOfProduction = LocalDate.parse(planeTab[3], formatter);
             flight.setPlane(Repository.getPlaneByDate(yearOfProduction));
+            flightJTA.selectAll();
+            flightJTA.replaceSelection("");
+            flightJTA.append(flight.toString());
         });
     }
 
@@ -202,6 +222,7 @@ public class FlightMenuPanel extends JPanel implements Component {
             System.out.println(flight);
             if(isValidFlight()){
                 Repository.addFlight(flight);
+                JOptionPane.showMessageDialog(null, "Update flight");
             } else {
                 JOptionPane.showMessageDialog(null, "Invalid flight");
             }

@@ -26,14 +26,14 @@ public class UserMenuTabbed extends JPanel implements Component {
         setAllBounds();
         addAllToPanel();
         setLayout(null);
-        setSize(300,300);
+       // setSize(300,300);
         setVisible(true);
     }
 
     public void addAllToPanel(){
         add(menuBar);
         add(welcomeJL);
-        tabbedPane.setSize(500,460);
+        tabbedPane.setSize(600,460);
         add(tabbedPane);
 
     }
@@ -60,6 +60,7 @@ public class UserMenuTabbed extends JPanel implements Component {
     private void addActionMenuItem(){
         changeData.addActionListener(e -> addActionToTabbedPane("Change data"));
         fundWallet.addActionListener(e -> addActionToTabbedPane("Found wallet"));
+        viewFlights.addActionListener(e -> addActionToTabbedPane("View flights"));
         backToMenu.addActionListener(e -> {
             mediator.offPanel(this);
             mediator.setSizeFrame(350,200);
@@ -71,8 +72,8 @@ public class UserMenuTabbed extends JPanel implements Component {
         switch (text){
             case "Change data" -> tabbedPane.addTab(text, mediator.getChangeDataPanel());
             case "Found wallet" -> tabbedPane.addTab(text, mediator.getFundWalletPanel());
+            case "View flights" -> tabbedPane.addTab(text, new ViewFlightPanel());
         }
-
     }
 
     public JLabel getWelcomeJL() {
