@@ -8,6 +8,8 @@ import entity.users.Account;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseEvent;
+import java.awt.event.MouseListener;
 
 public class LoginPanel extends JPanel implements Component {
     private JLabel emailJL = new JLabel("Email");

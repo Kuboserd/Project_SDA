@@ -44,6 +44,7 @@ public class ChangeDataPanel extends JPanel implements Component {
         createAcceptEmailName();
         createAcceptPassword();
         createAcceptPhoneNumber();
+        setColorButtons();
         addAllToPanel();
         setLayout(null);
         setVisible(true);
@@ -67,25 +68,38 @@ public class ChangeDataPanel extends JPanel implements Component {
     }
 
     private void setAllBounds() {
-        firstNameJL.setBounds(30, 38, 80, 20);
-        firstNameJTF.setBounds(30, 57, 193, 28);
-        acceptFirstNameJB.setBounds(230, 57, 80, 25);
-        lastNameJL.setBounds(30, 85, 70, 20);
-        lastNameJTF.setBounds(30, 104, 193, 28);
-        acceptLastNameJB.setBounds(230, 104, 80, 25);
-        emailJL.setBounds(30, 132, 70, 20);
-        incorrectEmailJL.setBounds(140, 132, 100, 20);
-        emailJTF.setBounds(30, 151, 193, 28);
-        acceptEmailJB.setBounds(230, 151, 80, 25);
-        pswdJL.setBounds(30, 226, 70, 20);
-        pswdJTF.setBounds(30, 245, 190, 28);
-        confirmPswdJL.setBounds(30, 273, 120, 20);
-        confirmPSWDJTF.setBounds(30, 292, 190, 28);
-        acceptPasswordJB.setBounds(230, 292, 80, 25);
-        phoneJL.setBounds(30, 179, 150, 20);
-        incorrectPhoneJL.setBounds(140, 179, 150, 20);
-        phoneJTF.setBounds(30, 198, 193, 28);
-        acceptPhoneJB.setBounds(230, 198, 80, 25);
+        firstNameJL.setBounds(110, 38, 80, 20);
+        firstNameJTF.setBounds(110, 57, 193, 28);
+        acceptFirstNameJB.setBounds(310, 57, 80, 25);
+        lastNameJL.setBounds(110, 85, 70, 20);
+        lastNameJTF.setBounds(110, 104, 193, 28);
+        acceptLastNameJB.setBounds(310, 104, 80, 25);
+        emailJL.setBounds(110, 132, 70, 20);
+        incorrectEmailJL.setBounds(220, 132, 100, 20);
+        emailJTF.setBounds(110, 151, 193, 28);
+        acceptEmailJB.setBounds(310, 151, 80, 25);
+        pswdJL.setBounds(110, 226, 70, 20);
+        pswdJTF.setBounds(110, 245, 190, 28);
+        confirmPswdJL.setBounds(110, 273, 120, 20);
+        confirmPSWDJTF.setBounds(110, 292, 190, 28);
+        acceptPasswordJB.setBounds(310, 292, 80, 25);
+        phoneJL.setBounds(110, 179, 150, 20);
+        incorrectPhoneJL.setBounds(220, 179, 150, 20);
+        phoneJTF.setBounds(110, 198, 193, 28);
+        acceptPhoneJB.setBounds(310, 198, 80, 25);
+    }
+
+    private void setColorButtons() {
+        acceptEmailJB.setForeground(Color.WHITE);
+        acceptEmailJB.setBackground(Color.BLACK);
+        acceptFirstNameJB.setForeground(Color.WHITE);
+        acceptFirstNameJB.setBackground(Color.BLACK);
+        acceptLastNameJB.setForeground(Color.WHITE);
+        acceptLastNameJB.setBackground(Color.BLACK);
+        acceptPasswordJB.setForeground(Color.WHITE);
+        acceptPasswordJB.setBackground(Color.BLACK);
+        acceptPhoneJB.setForeground(Color.WHITE);
+        acceptPhoneJB.setBackground(Color.BLACK);
     }
 
     private void addKeyLisToEmailJTF() {

@@ -23,5 +23,6 @@ public interface Mediator {
     FlightMenuPanel getFlightMenuPanel();
     RegisterPanel getRegisterPanel();
     FundWalletPanel getFundWalletPanel();
+    ViewFlightPanel getViewFlightPanel();
     AdminPanel getAdminPanel();
 }

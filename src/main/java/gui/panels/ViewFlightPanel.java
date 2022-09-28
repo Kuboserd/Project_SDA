@@ -6,6 +6,7 @@ import gui.designpatterns.Mediator;
 import util.repository.Repository;
 
 import javax.swing.*;
+import java.awt.*;
 import java.util.List;
 
 public class ViewFlightPanel extends JPanel implements Component {
@@ -20,6 +21,7 @@ public class ViewFlightPanel extends JPanel implements Component {
 
     public ViewFlightPanel() {
         setAllBounds();
+        setColorButton();
         addAllToPanel();
         addActionSearchButton();
         setLayout(null);
@@ -40,6 +42,10 @@ public class ViewFlightPanel extends JPanel implements Component {
         flightsJSP.setBounds(10,60,450,100);
     }
 
+    public void setColorButton(){
+        searchFlightJB.setForeground(Color.WHITE);
+        searchFlightJB.setBackground(Color.BLACK);
+    }
     public void addActionSearchButton(){
         searchFlightJB.addActionListener(e -> {
             if(!searchFLightJTF.getText().isEmpty()){
@@ -57,5 +63,8 @@ public class ViewFlightPanel extends JPanel implements Component {
         this.mediator = mediator;
     }
 
+    public String getName(){
+        return "viewPanel";
+    }
 
 }

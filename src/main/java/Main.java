@@ -13,6 +13,7 @@ public class Main {
         gui.registerComponent(new UserMenuTabbed());
         gui.registerComponent(new FundWalletPanel());
         gui.registerComponent(new FlightMenuPanel());
+        gui.registerComponent(new ViewFlightPanel());
         gui.createGui();
     }
 }

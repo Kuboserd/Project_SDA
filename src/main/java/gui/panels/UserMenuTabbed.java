@@ -4,12 +4,14 @@ import gui.designpatterns.Component;
 import gui.designpatterns.Mediator;
 
 import javax.swing.*;
+import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 public class UserMenuTabbed extends JPanel implements Component {
     private Mediator mediator;
     private JLabel welcomeJL = new JLabel();
     private JTabbedPane tabbedPane = new JTabbedPane();
-    private JPanel welcomePanel = new JPanel();
     private JMenuBar menuBar = new JMenuBar();
     private JMenuItem changeData = new JMenuItem("Change data");
     private JMenuItem viewFlights = new JMenuItem("View Flights");
@@ -18,8 +20,10 @@ public class UserMenuTabbed extends JPanel implements Component {
     private JMenuItem contactAssistant = new JMenuItem("Contact with Assistant");
     private JMenuItem backToMenu = new JMenuItem("Back");
     private JMenu menu = new JMenu("Menu");
+    private JButton closeJB = new JButton("x");
 
     public UserMenuTabbed() {
+        setColorButton();
         addMenuItemToMenu();
         addActionMenuItem();
         createJMenu();
@@ -32,6 +36,7 @@ public class UserMenuTabbed extends JPanel implements Component {
 
     public void addAllToPanel(){
         add(menuBar);
+        welcomeJL.setFont(new Font("Serif", Font.PLAIN, 20));
         add(welcomeJL);
         tabbedPane.setSize(600,460);
         add(tabbedPane);
@@ -39,13 +44,18 @@ public class UserMenuTabbed extends JPanel implements Component {
     }
 
     private void setAllBounds(){
-        menuBar.setBounds(0,0,40,40);
-        welcomeJL.setBounds(70,0,160,40);
+        menuBar.setBounds(0,0,80,40);
+        welcomeJL.setBounds(180,0,160,40);
         tabbedPane.setBounds(0,40,100,100);
     }
 
     private void createJMenu(){
+        menu.setSize(80,40);
+        menu.setHorizontalTextPosition(SwingConstants.CENTER);
+        //menuBar.setLayout(new BorderLayout());
+        menuBar.setLayout(null);
         menuBar.add(menu);
+
     }
 
     private void addMenuItemToMenu(){
@@ -72,8 +82,15 @@ public class UserMenuTabbed extends JPanel implements Component {
         switch (text){
             case "Change data" -> tabbedPane.addTab(text, mediator.getChangeDataPanel());
             case "Found wallet" -> tabbedPane.addTab(text, mediator.getFundWalletPanel());
-            case "View flights" -> tabbedPane.addTab(text, new ViewFlightPanel());
+            case "View flights" -> tabbedPane.addTab(text, mediator.getViewFlightPanel());
         }
+    }
+
+    public void setColorButton(){
+        UIManager.put("TabbedPane.selected", Color.GRAY);
+        SwingUtilities.updateComponentTreeUI(tabbedPane);
+        tabbedPane.setForeground(Color.WHITE);
+        tabbedPane.setBackground(Color.BLACK);
     }
 
     public JLabel getWelcomeJL() {
