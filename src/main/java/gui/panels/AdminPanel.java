@@ -4,6 +4,7 @@ import gui.designpatterns.Component;
 import gui.designpatterns.Mediator;
 
 import javax.swing.*;
+import java.awt.*;
 
 public class AdminPanel extends JPanel implements Component {
     private JButton flightsJB = new JButton("Flights menu");
@@ -13,6 +14,7 @@ public class AdminPanel extends JPanel implements Component {
 
     public AdminPanel() {
         setAllBounds();
+        setColorButtons();
         addAllToPanel();
         createRegAssistantButton();
         createFlightButton();
@@ -30,9 +32,12 @@ public class AdminPanel extends JPanel implements Component {
         regAssistantJB.setBounds(170, 10, 140, 25);
     }
 
-    /*TODO
-    *  usunąć zmienną registerPanel - zastąpić mediatorem
-    *   ustawić odpowiednio rejestracje*/
+    public void setColorButtons(){
+        flightsJB.setForeground(Color.WHITE);
+        flightsJB.setBackground(Color.BLACK);
+        regAssistantJB.setForeground(Color.WHITE);
+        regAssistantJB.setBackground(Color.BLACK);
+    }
     private void createRegAssistantButton() {
         regAssistantJB.addActionListener(e -> {
             setSize(330,40);

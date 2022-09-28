@@ -16,10 +16,12 @@ public class GuiFrame extends JFrame implements Mediator {
     private RegisterPanel regUser;
     private AdminPanel adminPanel;
     private JPanel assistant;
-    private JPanel user;
     private ChangeDataPanel changeDataPanel;
     private FlightMenuPanel flightMenuPanel;
     private AccountStrategy accountStrategy;
+    private UserMenuTabbed userMenuTabbed;
+    private FundWalletPanel fundWalletPanel;
+    private ViewFlightPanel viewFlightPanel;
 
     @Override
     public void registerComponent(Component component) {
@@ -27,11 +29,13 @@ public class GuiFrame extends JFrame implements Mediator {
         switch (component.getName()) {
             case "loginPanel" -> login = (LoginPanel) component;
             case "regPanel" -> regUser = (RegisterPanel) component;
-            case "userPanel" -> user = (JPanel) component;
+            case "userMenuTab" -> userMenuTabbed = (UserMenuTabbed) component;
             case "assistantPanel" -> assistant = (JPanel) component;
             case "adminPanel" -> adminPanel = (AdminPanel) component;
             case "changeDataPanel" -> changeDataPanel = (ChangeDataPanel) component;
             case "flightMenuPanel" -> flightMenuPanel = (FlightMenuPanel) component;
+            case "fundWallet" -> fundWalletPanel = (FundWalletPanel) component;
+            case "viewPanel" -> viewFlightPanel = (ViewFlightPanel) component;
         }
     }
 
@@ -42,7 +46,7 @@ public class GuiFrame extends JFrame implements Mediator {
             add(adminPanel);
             revalidate();
             adminPanel.setVisible(true);
-            setSize(350, 480);
+            setSize(350, 300);
         } else if (account.getClass().equals(ServiceAssistant.class)) {
             remove(login);
             add(assistant);
@@ -51,10 +55,14 @@ public class GuiFrame extends JFrame implements Mediator {
             setSize(480, 130);
         } else if (account.getClass().equals(User.class)) {
             remove(login);
-            add(user);
+            userMenuTabbed.getWelcomeJL().setText("Welcome " + account.getName());
+            fundWalletPanel.setUser((User) account);
+            fundWalletPanel.getCashJL().setText("Cash user: " + fundWalletPanel.getUser().getBalance());
+            changeDataPanel.setAccount(account);
+            add(userMenuTabbed);
             revalidate();
-            user.setVisible(true);
-            setSize(350, 170);
+            userMenuTabbed.setVisible(true);
+            setSize(500, 500);
         }
         setResizable(true);
         setLocationRelativeTo(null);
@@ -86,7 +94,6 @@ public class GuiFrame extends JFrame implements Mediator {
             case "assistant" -> setAccountStrategy(new ServiceAssistant());
         }
     }
-
 
     @Override
     public void setSizeFrame(int x, int y) {
@@ -158,6 +165,16 @@ public class GuiFrame extends JFrame implements Mediator {
     @Override
     public Account getAccount() {
         return account;
+    }
+
+    @Override
+    public FundWalletPanel getFundWalletPanel() {
+        return fundWalletPanel;
+    }
+
+    @Override
+    public ViewFlightPanel getViewFlightPanel() {
+        return viewFlightPanel;
     }
 
     public void createGui() {

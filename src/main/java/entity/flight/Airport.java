@@ -1,11 +1,13 @@
 package entity.flight;
 
 
+import lombok.Getter;
 import lombok.ToString;
 
 import javax.persistence.*;
 import java.util.List;
 @Entity
+@Getter
 @Table(name = "airports")
 public class Airport {
 
@@ -27,7 +29,6 @@ public class Airport {
 
     @Column
     private String cityCode;
-
     @Column
     private String cityName;//
 

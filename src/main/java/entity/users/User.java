@@ -34,6 +34,14 @@ public class User extends Account implements AccountStrategy {
     public User() {
     }
 
+    public double getBalance() {
+        return balance;
+    }
+
+    public void addBalance(double cash){
+        balance += cash;
+    }
+
     @Override
     public Account setAccountRegister() {
         return this;

@@ -59,12 +59,11 @@ public class Flight {
 
     @Override
     public String toString() {
-        return "Flight{" +
-                "startAirport=" + startAirport +
-                ", endAirport=" + endAirport +
-                ", plane=" + plane +
-                ", departureTime=" + departureTime +
-                ", arrivalTime=" + arrivalTime +
-                '}';
+        return "Flight: " +
+                "from: " + startAirport.getCityName() +
+                ", to: " + endAirport.getCityName() +
+                ", departureTime: " + departureTime +
+                ", arrivalTime: " + arrivalTime + "\n";
+
     }
 }

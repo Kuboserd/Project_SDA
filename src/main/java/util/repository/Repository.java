@@ -60,36 +60,41 @@ public class Repository {
 
     }
 
-    public static List<Airport> getByCityName(String cityName){
+    public static List<Airport> getByCityName(String cityName) {
         return entityManager.createQuery("FROM Airport a WHERE a.cityName =: cityName", Airport.class)
                 .setParameter("cityName", cityName)
                 .getResultList();
     }
 
-    public static List<Plane> getByName(String name){
+    public static List<Plane> getByName(String name) {
         return entityManager.createQuery("FROM Plane p WHERE p.name =: name", Plane.class)
                 .setParameter("name", name)
                 .getResultList();
     }
 
-    public static List<Airport> getByCountryName(String countryName){
+    public static List<Airport> getByCountryName(String countryName) {
         return entityManager.createQuery("FROM Airport a WHERE a.countryName =: countryName", Airport.class)
                 .setParameter("name", countryName)
                 .getResultList();
     }
 
-    public static Airport getAirportByName(String name){
+    public static Airport getAirportByName(String name) {
         return entityManager.createQuery("FROM Airport a WHERE a.name =: name", Airport.class)
-                .setParameter("name",name)
+                .setParameter("name", name)
                 .getResultList().get(0);
     }
 
-    public static Plane getPlaneByDate(LocalDate yearOfProduction){
+    public static Plane getPlaneByDate(LocalDate yearOfProduction) {
         return entityManager.createQuery("FROM Plane p WHERE p.yearOfProduction =: yearOfProduction", Plane.class)
-                .setParameter("yearOfProduction",yearOfProduction)
+                .setParameter("yearOfProduction", yearOfProduction)
                 .getResultList().get(0);
     }
 
+    public static List<Flight> getPlaneByAirportCity(String cityName) {
+        return entityManager.createQuery("SELECT f FROM Flight f JOIN Airport a ON f.startAirport = a.id WHERE a.cityName =: cityName", Flight.class)
+                .setParameter("cityName", cityName)
+                .getResultList();
+    }
 
     public static void close() {
         entityManager.close();
